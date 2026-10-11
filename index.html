@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinkedIn Content Engine — Shashank Saxena</title>
+<style>
+  :root {
+    --li-blue: #0a66c2;
+    --li-bg: #f4f2ee;
+    --card: #ffffff;
+    --ink: #191919;
+    --ink-2: rgba(0,0,0,.6);
+    --ink-3: rgba(0,0,0,.45);
+    --line: #e5e5e5;
+    --planned-bg:#ececec; --planned-tx:#5f5f5f;
+    --drafted-bg:#dbeafe; --drafted-tx:#1d4ed8;
+    --scheduled-bg:#fef3c7; --scheduled-tx:#b45309;
+    --posted-bg:#dcfce7; --posted-tx:#15803d;
+    --measured-bg:#f3e8ff; --measured-tx:#7e22ce;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--li-bg); color: var(--ink); padding-bottom: 80px;
+  }
+  header.top {
+    background: var(--card); border-bottom: 1px solid var(--line);
+    padding: 14px 20px; position: sticky; top: 0; z-index: 40;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  }
+  header.top h1 { font-size: 17px; font-weight: 700; }
+  header.top h1 span { color: var(--li-blue); }
+  .tabs { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+  .tab {
+    border: 1px solid var(--line); background: var(--card); border-radius: 999px;
+    padding: 6px 14px; font-size: 13px; cursor: pointer; color: var(--ink-2);
+  }
+  .tab.active { background: var(--li-blue); border-color: var(--li-blue); color: #fff; font-weight: 600; }
+  .legend { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 20px 0; font-size: 11px; color: var(--ink-2); }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 10.5px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; }
+  .pill.planned { background: var(--planned-bg); color: var(--planned-tx); }
+  .pill.drafted { background: var(--drafted-bg); color: var(--drafted-tx); }
+  .pill.scheduled { background: var(--scheduled-bg); color: var(--scheduled-tx); }
+  .pill.posted { background: var(--posted-bg); color: var(--posted-tx); }
+  .pill.measured { background: var(--measured-bg); color: var(--measured-tx); }
+  .summary { padding: 10px 20px 0; font-size: 12.5px; color: var(--ink-2); }
+
+  .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; padding: 14px 20px; }
+  .day { min-width: 0; }
+  .day h3 { font-size: 12px; font-weight: 700; color: var(--ink-2); text-transform: uppercase; letter-spacing: .5px; padding: 6px 2px 8px; border-bottom: 2px solid var(--line); margin-bottom: 8px; }
+  .day h3 b { color: var(--ink); }
+  .slot {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s, transform .15s;
+  }
+  .slot:hover { box-shadow: 0 2px 10px rgba(0,0,0,.12); transform: translateY(-1px); }
+  .slot .row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .slot time { font-size: 11px; font-weight: 700; color: var(--li-blue); }
+  .slot .kind { font-size: 10px; font-weight: 700; color: var(--ink-3); letter-spacing: .4px; }
+  .slot h4 { font-size: 12.5px; line-height: 1.3; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .slot .fmt { font-size: 10.5px; color: var(--ink-3); margin-top: 6px; }
+
+  /* modal */
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; z-index: 50; padding: 20px; overflow-y: auto; }
+  .overlay.open { display: block; }
+  .modal { background: var(--li-bg); max-width: 640px; margin: 20px auto; border-radius: 12px; overflow: hidden; }
+  .modal .bar { background: var(--card); padding: 12px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .modal .bar .kind { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+  .modal .close { margin-left: auto; border: none; background: none; font-size: 20px; cursor: pointer; color: var(--ink-2); }
+  .modal .body { padding: 16px; }
+
+  /* LinkedIn-style preview card */
+  .li-card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .li-head { display: flex; gap: 10px; padding: 12px 14px 8px; align-items: center; }
+  .li-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #0a66c2, #004182); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .li-who { min-width: 0; }
+  .li-who .n { font-size: 14px; font-weight: 700; }
+  .li-who .h { font-size: 12px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 420px; }
+  .li-who .t { font-size: 12px; color: var(--ink-3); }
+  .li-text { padding: 4px 14px 10px; font-size: 14px; line-height: 1.45; white-space: pre-wrap; }
+  .li-text .ghost { color: var(--ink-3); font-style: italic; }
+  .li-text .notes { margin-top: 10px; padding: 10px; background: #fafafa; border-left: 3px solid var(--li-blue); font-size: 12.5px; color: var(--ink-2); font-style: normal; }
+  .li-actions { border-top: 1px solid var(--line); display: flex; padding: 4px 8px; }
+  .li-actions span { flex: 1; text-align: center; font-size: 12.5px; color: var(--ink-2); padding: 8px 0; font-weight: 600; }
+  .li-metrics { padding: 8px 14px; font-size: 12px; color: var(--ink-2); border-top: 1px solid var(--line); display: flex; gap: 14px; flex-wrap: wrap; }
+  .li-metrics b { color: var(--ink); }
+
+  .copyrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  button.btn {
+    border: none; background: var(--li-blue); color: #fff; border-radius: 999px;
+    padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  button.btn.ghost { background: var(--card); color: var(--li-blue); border: 1px solid var(--li-blue); }
+  button.btn:active { transform: scale(.97); }
+  .meta { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-size: 12.5px; }
+  .meta .mrow { margin-bottom: 8px; }
+  .meta .k { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .4px; color: var(--ink-3); display: block; margin-bottom: 2px; }
+  .meta a { color: var(--li-blue); word-break: break-all; }
+  .chips { display: flex; gap: 5px; flex-wrap: wrap; }
+  .chip { background: #eef3f8; color: #0a66c2; border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 600; }
+  .posted-row { display: flex; gap: 8px; margin-top: 6px; }
+  .posted-row input { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 13px; min-width: 0; }
+  .snippet { margin-top: 8px; background: #111827; color: #a7f3d0; border-radius: 8px; padding: 10px 12px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; word-break: break-all; display: none; }
+  .snippet.show { display: block; }
+
+  /* tracking */
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin: 14px 20px; padding: 16px; }
+  .panel h2 { font-size: 15px; margin-bottom: 8px; }
+  .panel p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  table.trk { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 14px 20px; width: calc(100% - 40px); background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  table.trk th, table.trk td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+  table.trk th { font-size: 11px; text-transform: uppercase; letter-spacing: .4px; color: var(--ink-3); background: #fafafa; }
+  .tier { font-weight: 700; font-size: 11px; }
+  .tier.top { color: #15803d; } .tier.mid { color: #b45309; } .tier.bot { color: #b91c1c; }
+  .empty { padding: 30px 20px; text-align: center; color: var(--ink-3); font-size: 13px; }
+  .hidden { display: none; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #111827; color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 13px; opacity: 0; transition: opacity .2s; z-index: 99; pointer-events: none; }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+  @media (max-width: 800px)  { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 520px)  { .grid { grid-template-columns: 1fr; } .li-who .h { max-width: 220px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>LinkedIn <span>Content Engine</span> · Shashank Saxena</h1>
+  <div class="tabs">
+    <button class="tab" data-view="oct12">Week of Oct 12</button>
+    <button class="tab" data-view="oct19">Week of Oct 19–25</button>
+    <button class="tab" data-view="tracking">📊 Tracking</button>
+  </div>
+</header>
+
+<div class="legend">
+  Status:
+  <span class="pill planned">planned</span>
+  <span class="pill drafted">drafted</span>
+  <span class="pill scheduled">scheduled</span>
+  <span class="pill posted">posted</span>
+  <span class="pill measured">measured</span>
+  · click any card for preview + copy
+</div>
+<div class="summary" id="summary"></div>
+<main class="grid" id="grid"></main>
+
+<section id="tracking" class="hidden">
+  <div class="panel">
+    <h2>📊 What's working / what's not</h2>
+    <p id="analysis-text"></p>
+    <p style="margin-top:10px; font-size:12px; color:var(--ink-3)">Last analysis update: <span id="analysis-date"></span></p>
+  </div>
+  <div class="panel">
+    <h2>How tracking works</h2>
+    <p>1. Post on LinkedIn (native scheduler or manual) → drop the source link in the first comment manually (schedulers can't do it).<br>
+    2. Open the post's card here → paste the LinkedIn URL into <b>Mark as posted</b> → copy the generated line and send it to Claude.<br>
+    3. Claude verifies the post through your logged-in browser, pulls impressions / reactions / comments / reposts, updates this page, commits and pushes. Checks run when you ask — suggested cadence: 2h / 24h / 72h after posting.<br>
+    4. No unattended scraping: LinkedIn blocks it. We read <i>your</i> analytics through <i>your</i> browser session only.</p>
+    <div class="copyrow"><button class="btn ghost" onclick="copyEngTemplate()">Copy engagement-report template</button></div>
+  </div>
+  <table class="trk" id="trk-table"></table>
+</section>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="bar">
+      <span class="kind" id="m-kind"></span>
+      <span id="m-status"></span>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+    <div class="body" id="m-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied ✓</div>
+
+<script src="data.js"></script>
+<script>
+const OVR_KEY = "li_overrides_v1";
+const getOvr = () => { try { return JSON.parse(localStorage.getItem(OVR_KEY) || "{}"); } catch(e){ return {}; } };
+const setOvr = (id, patch) => { const o = getOvr(); o[id] = Object.assign(o[id]||{}, patch); localStorage.setItem(OVR_KEY, JSON.stringify(o)); };
+const merged = (p) => Object.assign({}, p, getOvr()[p.id] || {});
+const DAYS = ["MON","TUE","WED","THU","FRI","SAT","SUN"];
+const esc = (s) => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+let view = "oct19";
+function postsFor(v) {
+  if (v === "tracking") return [];
+  return LI_DATA.posts.filter(p => p.week === v).map(merged);
+}
+
+function renderTabs() {
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.view === view));
+}
+document.querySelectorAll(".tab").forEach(t => t.onclick = () => { view = t.dataset.view; render(); });
+
+function render() {
+  renderTabs();
+  const isTrk = view === "tracking";
+  document.getElementById("tracking").classList.toggle("hidden", !isTrk);
+  document.getElementById("grid").classList.toggle("hidden", isTrk);
+  document.getElementById("summary").textContent = "";
+  if (isTrk) return renderTracking();
+  const posts = postsFor(view);
+  const counts = {};
+  posts.forEach(p => counts[p.status] = (counts[p.status]||0)+1);
+  document.getElementById("summary").textContent =
+    Object.entries(counts).map(([k,v]) => `${v} ${k}`).join(" · ") + ` — ${posts.length} slots`;
+  const byDay = {};
+  posts.forEach(p => (byDay[p.day] = byDay[p.day]||[]).push(p));
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  DAYS.filter(d => byDay[d]).forEach(d => {
+    const col = document.createElement("div"); col.className = "day";
+    const dateLabel = byDay[d][0].date.slice(5).replace("-","/");
+    col.innerHTML = `<h3><b>${d}</b> ${dateLabel}</h3>`;
+    byDay[d].sort((a,b)=>a.slot.localeCompare(b.slot)).forEach(p => {
+      const el = document.createElement("div"); el.className = "slot";
+      el.innerHTML = `
+        <div class="row"><time>${p.time.replace(" IST","")}</time><span class="pill ${p.status}">${p.status}</span></div>
+        <div class="kind">${p.type} · #${p.hookId} ${p.hookName}</div>
+        <h4>${esc(p.title)}</h4>
+        <div class="fmt">${p.format.startsWith("image") ? "🖼️" : p.format.startsWith("carousel") ? "🎠" : "📝"} ${esc(p.format.split("—")[0].trim())}</div>`;
+      el.onclick = () => openPost(p.id);
+      col.appendChild(el);
+    });
+    grid.appendChild(col);
+  });
+}
+
+function liPreview(p) {
+  const prof = LI_DATA.profile;
+  const m = p.metrics;
+  const timeLine = p.status === "posted" && p.linkedinUrl ? "Posted on LinkedIn 🌐" : `${p.day} ${p.date} · ${p.time} 🌐`;
+  let textHtml;
+  if (p.body) {
+    textHtml = esc(p.body);
+  } else {
+    textHtml = `${p.firstLine ? esc(p.firstLine) + "\n\n" : ""}<span class="ghost">⏳ Full draft pending — ${esc(p.bodyNote || "")}</span>` +
+      `<div class="notes"><b>Strategy notes (not part of post):</b> ${esc(p.angle)}</div>`;
+  }
+  const metricsHtml = m
+    ? `<div class="li-metrics"><span><b>${m.impressions ?? "—"}</b> impressions</span><span><b>${m.reactions ?? "—"}</b> reactions</span><span><b>${m.comments ?? "—"}</b> comments</span><span><b>${m.reposts ?? "—"}</b> reposts</span></div>`
+    : "";
+  return `<div class="li-card">
+    <div class="li-head">
+      <div class="li-avatar">${prof.initials}</div>
+      <div class="li-who">
+        <div class="n">${prof.name}</div>
+        <div class="h">${prof.headline}</div>
+        <div class="t">${timeLine}</div>
+      </div>
+    </div>
+    <div class="li-text">${textHtml}</div>
+    ${metricsHtml}
+    <div class="li-actions"><span>👍 Like</span><span>💬 Comment</span><span>🔁 Repost</span><span>✉️ Send</span></div>
+  </div>`;
+}
+
+function openPost(id) {
+  const p = merged(LI_DATA.posts.find(x => x.id === id));
+  document.getElementById("m-kind").textContent = `${p.day} ${p.date} · ${p.time} · Slot ${p.slot} · ${p.type} · Hook #${p.hookId} ${p.hookName}`;
+  document.getElementById("m-status").innerHTML = `<span class="pill ${p.status}">${p.status}</span>`;
+  const body = document.getElementById("m-body");
+  body.innerHTML = liPreview(p) + `
+    <div class="copyrow">
+      <button class="btn" onclick="copyText(${JSON.stringify(p.id)},'body')">📋 Copy post text</button>
+      <button class="btn ghost" onclick="copyText(${JSON.stringify(p.id)},'fc')">Copy first comment</button>
+      <button class="btn ghost" onclick="copyText(${JSON.stringify(p.id)},'both')">Copy both</button>
+    </div>
+    <div class="meta">
+      <div class="mrow"><span class="k">Anchor source</span><a href="${p.anchor.url}" target="_blank">${esc(p.anchor.title)}</a></div>
+      ${p.also && p.also.length ? `<div class="mrow"><span class="k">Also</span>${p.also.map(a=>`<div>${esc(a)}</div>`).join("")}</div>` : ""}
+      <div class="mrow"><span class="k">People named</span>${esc(p.people.join(", "))} &nbsp;·&nbsp; <b>Tag:</b> ${esc(p.tag)}</div>
+      <div class="mrow"><span class="k">Strategy stack</span><div class="chips">${p.stack.map(s=>`<span class="chip">${esc(s)}</span>`).join("")}</div></div>
+      <div class="mrow"><span class="k">Format</span>${esc(p.format)}</div>
+      <div class="mrow"><span class="k">Mark as posted</span>
+        ${p.linkedinUrl ? `<div>✅ <a href="${p.linkedinUrl}" target="_blank">${esc(p.linkedinUrl)}</a></div>` : `
+        <div class="posted-row">
+          <input id="url-${p.id}" placeholder="Paste the LinkedIn post URL…">
+          <button class="btn" onclick="markPosted(${JSON.stringify(p.id)})">Save</button>
+        </div>
+        <div class="snippet" id="snip-${p.id}"></div>`}
+      </div>
+    </div>`;
+  document.getElementById("overlay").classList.add("open");
+}
+function closeModal(){ document.getElementById("overlay").classList.remove("open"); }
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+function toast(msg){ const t = document.getElementById("toast"); t.textContent = msg || "Copied ✓"; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"), 1400); }
+function doCopy(text) {
+  if (navigator.clipboard && window.isSecureContext !== false) {
+    navigator.clipboard.writeText(text).then(()=>toast()).catch(()=>fallbackCopy(text));
+  } else fallbackCopy(text);
+}
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta);
+  ta.select(); try { document.execCommand("copy"); toast(); } catch(e){ toast("Copy failed — select manually"); }
+  document.body.removeChild(ta);
+}
+function copyText(id, which) {
+  const p = merged(LI_DATA.posts.find(x => x.id === id));
+  const bodyText = p.body || ((p.firstLine ? p.firstLine + "\n\n" : "") + "[draft pending — " + (p.bodyNote||"") + "]");
+  const fc = p.firstComment || "";
+  let text = which === "body" ? bodyText : which === "fc" ? fc : bodyText + "\n\n— first comment —\n" + fc;
+  doCopy(text);
+}
+function markPosted(id) {
+  const url = document.getElementById("url-" + id).value.trim();
+  if (!url) return;
+  setOvr(id, { linkedinUrl: url, status: "posted" });
+  const snip = document.getElementById("snip-" + id);
+  snip.textContent = `POSTED: ${id} — ${url}`;
+  snip.classList.add("show");
+  doCopy(`POSTED: ${id} — ${url}`);
+  toast("Saved + line copied — paste it to Claude");
+  render();
+}
+function copyEngTemplate() {
+  doCopy("ENGAGEMENT: <post-id or LinkedIn URL>\nimpressions: \nreactions: \ncomments: \nreposts: \n(screenshot of LinkedIn analytics also works — paste it in chat)");
+}
+
+function renderTracking() {
+  document.getElementById("analysis-text").textContent = LI_DATA.analysis.text;
+  document.getElementById("analysis-date").textContent = LI_DATA.analysis.updatedAt;
+  const posts = LI_DATA.posts.map(merged).filter(p => p.status === "posted" || p.status === "measured" || p.linkedinUrl);
+  const tbl = document.getElementById("trk-table");
+  if (!posts.length) {
+    tbl.innerHTML = `<tr><td class="empty">No posted posts tracked yet. Post on LinkedIn → paste the URL on the card → send the generated line to Claude.</td></tr>`;
+    return;
+  }
+  const rate = p => p.metrics && p.metrics.impressions ? ((p.metrics.reactions||0)+(p.metrics.comments||0)*2+(p.metrics.reposts||0)*3) / p.metrics.impressions : null;
+  const rates = posts.map(rate).filter(r => r !== null).sort((a,b)=>a-b);
+  const tier = r => {
+    if (r === null) return `<span class="tier">—</span>`;
+    if (rates.length < 3) return `<span class="tier mid">baseline</span>`;
+    const t1 = rates[Math.floor(rates.length/3)], t2 = rates[Math.floor(rates.length*2/3)];
+    return r >= t2 ? `<span class="tier top">▲ top</span>` : r >= t1 ? `<span class="tier mid">● mid</span>` : `<span class="tier bot">▼ bottom</span>`;
+  };
+  tbl.innerHTML = `<tr><th>Post</th><th>Date</th><th>Impr.</th><th>Reacts</th><th>Comments</th><th>Reposts</th><th>Eng/1k impr.</th><th>Tier</th><th>Link</th></tr>` +
+    posts.map(p => {
+      const r = rate(p);
+      return `<tr>
+        <td style="cursor:pointer;color:var(--li-blue)" onclick="openPost(${JSON.stringify(p.id)})">${esc(p.title.slice(0,42))}${p.title.length>42?"…":""}</td>
+        <td>${p.date.slice(5)}</td>
+        <td>${p.metrics?.impressions ?? "—"}</td>
+        <td>${p.metrics?.reactions ?? "—"}</td>
+        <td>${p.metrics?.comments ?? "—"}</td>
+        <td>${p.metrics?.reposts ?? "—"}</td>
+        <td>${r !== null ? (r*1000).toFixed(1) : "—"}</td>
+        <td>${tier(r)}</td>
+        <td>${p.linkedinUrl ? `<a href="${p.linkedinUrl}" target="_blank">open</a>` : "—"}</td>
+      </tr>`;
+    }).join("");
+}
+
+render();
+</script>
+</body>
+</html>
