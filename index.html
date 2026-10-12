@@ -93,6 +93,7 @@
   }
   button.btn.ghost { background: var(--card); color: var(--li-blue); border: 1px solid var(--li-blue); }
   button.btn:active { transform: scale(.97); }
+  button.btn:disabled { background: var(--planned-bg); color: var(--ink-3); border: 1px solid var(--line); cursor: not-allowed; }
   .meta { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-size: 12.5px; }
   .meta .mrow { margin-bottom: 8px; }
   .meta .k { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .4px; color: var(--ink-3); display: block; margin-bottom: 2px; }
@@ -266,9 +267,9 @@ function openPost(id) {
   const body = document.getElementById("m-body");
   body.innerHTML = liPreview(p) + `
     <div class="copyrow">
-      <button class="btn" onclick="copyText(${JSON.stringify(p.id)},'body')">📋 Copy post text</button>
-      <button class="btn ghost" onclick="copyText(${JSON.stringify(p.id)},'fc')">Copy first comment</button>
-      <button class="btn ghost" onclick="copyText(${JSON.stringify(p.id)},'both')">Copy both</button>
+      <button class="btn" ${p.body ? "" : `disabled title="No draft yet — say 'write ${p.day} ${p.slot}' to draft this slot"`} onclick="copyText(${JSON.stringify(p.id)},'body')">${p.body ? "📋 Copy post text" : "📋 No draft yet"}</button>
+      <button class="btn ghost" ${p.firstComment ? "" : `disabled title="No first comment planned for this slot"`} onclick="copyText(${JSON.stringify(p.id)},'fc')">${p.firstComment ? "Copy first comment" : "No first comment"}</button>
+      <button class="btn ghost" ${(p.body || p.firstComment) ? "" : `disabled title="Nothing to copy yet"`} onclick="copyText(${JSON.stringify(p.id)},'both')">Copy both</button>
     </div>
     <div class="meta">
       <div class="mrow"><span class="k">Anchor source</span><a href="${p.anchor.url}" target="_blank">${esc(p.anchor.title)}</a></div>
@@ -297,15 +298,25 @@ function doCopy(text) {
   } else fallbackCopy(text);
 }
 function fallbackCopy(text) {
-  const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta);
-  ta.select(); try { document.execCommand("copy"); toast(); } catch(e){ toast("Copy failed — select manually"); }
+  const ta = document.createElement("textarea"); ta.value = text;
+  ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
   document.body.removeChild(ta);
+  if (ok) toast(); else toast("Copy failed — long-press / Ctrl+C the text manually");
 }
 function copyText(id, which) {
   const p = merged(LI_DATA.posts.find(x => x.id === id));
-  const bodyText = p.body || ((p.firstLine ? p.firstLine + "\n\n" : "") + "[draft pending — " + (p.bodyNote||"") + "]");
+  if (!p) { toast("Post not found"); return; }
+  const hasBody = !!p.body;
+  const bodyText = p.body || ((p.firstLine ? p.firstLine + "\n\n" : "") + "[draft pending — " + (p.bodyNote||"ask Claude to draft this slot") + "]");
   const fc = p.firstComment || "";
-  let text = which === "body" ? bodyText : which === "fc" ? fc : bodyText + "\n\n— first comment —\n" + fc;
+  if (which === "fc" && !fc) { toast("No first comment for this slot"); return; }
+  if (which === "body" && !hasBody) { toast("No draft yet — nothing to copy"); return; }
+  if (which === "both" && !hasBody) { toast(fc ? "No draft yet — use 'Copy first comment' for the source link" : "Nothing to copy yet"); return; }
+  let text = which === "body" ? bodyText : which === "fc" ? fc : bodyText + (fc ? "\n\n— first comment —\n" + fc : "");
+  if (!text.trim()) { toast("Nothing to copy"); return; }
   doCopy(text);
 }
 function markPosted(id) {
