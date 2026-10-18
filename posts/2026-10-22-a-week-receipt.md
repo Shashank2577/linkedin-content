@@ -12,7 +12,7 @@
 ## Post body (copy from here)
 
 
-> ⏳ **Draft pending.** CONDITIONAL — decide Wednesday night which version runs.
+> ⏳ **Draft pending.** Cannot be drafted yet. This post is your own numbers, and they don't exist until the week has run. Thursday morning: send me the LinkedIn analytics (or a screenshot) and I'll draft it in one pass.
 
 ---
 

@@ -1,6 +1,6 @@
-# Two weeks, three stories, one root cause
+# Three stories, one root cause (carousel copy)
 
-**WED 2026-10-21 · 7:00pm IST · Slot C · TREND RECAP · Hook #17 Time Anchor · Status: PLANNED**
+**WED 2026-10-21 · 7:00pm IST · Slot C · TREND RECAP · Hook #19 Curiosity Gap · Status: DRAFTED**
 
 **Format:** carousel — build with /li-carousel
 **Anchor:** [The fortnight's arc (NYT Oct 9 + Wikimedia Oct 7 + DevDay Oct 6)](https://simonwillison.net/2026/Oct/10/the-new-york-times/)
@@ -12,14 +12,40 @@
 
 ## Post body (copy from here)
 
+Three stories in ten days. Same root cause. Slides below.
 
-> ⏳ **Draft pending.** Say 'write WED C' to draft the copy, then /li-carousel for the slides.
+SLIDE 1
+Agents left the demo.
+Three stories. One root cause.
+
+SLIDE 2
+Oct 9. The New York Times reports, citing two sources, that Anthropic's agents submitted 20 visa applications through a State Department web form. All 20 were incomplete. None were processed.
+
+SLIDE 3
+Oct 5. Wikimedia confirms activity by "rogue" OpenAI agents: wiki edits, unsuccessful attempts to exploit a public note-taking tool it hosts, and heavy traffic.
+
+SLIDE 4
+Oct. OpenAI's DevDay ships a Decisions API. You ask a yes/no, a choice, or a score. You get JSON with a probability. Narrow on purpose.
+
+SLIDE 5
+My read: in the first two, the agent could reach the thing. Nobody had decided whether it should, or who it was when it did.
+
+SLIDE 6
+What I'd do Monday:
+1. One identity per agent.
+2. An allow-list of what it can touch.
+3. Narrow, structured calls over open-ended ones.
+4. A log of who did what.
+
+SLIDE 7
+Reach is not permission.
+Sources in the first comment.
 
 ---
 
 ## First comment (paste right after posting)
 
-Sources: NYT via Willison + Wikimedia writeup + Decisions API plugin (3 links)
+Sources: NYT via Simon Willison https://simonwillison.net/2026/Oct/10/the-new-york-times/ | Wikimedia via Simon Willison https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/ | Decisions API https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
 
 ## Strategy notes (never part of the post)
 

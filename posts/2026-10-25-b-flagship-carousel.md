@@ -1,6 +1,6 @@
-# 5 things the 'agents escaped the demo' fortnight taught people who actually ship
+# 5 things two weeks of agent news taught people who ship (carousel copy)
 
-**SUN 2026-10-25 · 4:00pm IST · Slot B · STORY/TEACH · Hook #5 The List Promise · Status: PLANNED**
+**SUN 2026-10-25 · 4:00pm IST · Slot B · STORY/TEACH · Hook #5 The List Promise · Status: DRAFTED**
 
 **Format:** carousel — 7 slides, build with /li-carousel
 **Anchor:** [The full fortnight arc (multiple sources)](https://simonwillison.net/2026/Oct/10/the-new-york-times/)
@@ -12,14 +12,40 @@
 
 ## Post body (copy from here)
 
+5 things two weeks of agent news taught people who actually ship. Slides below, sources in the first comment.
 
-> ⏳ **Draft pending.** Say 'write SUN B' to draft copy, then /li-carousel for slides.
+SLIDE 1
+5 things two weeks of agent news taught people who actually ship.
+
+SLIDE 2
+1. Agents hit forms they can't finish.
+20 visa applications, all incomplete, none processed. (NYT, citing two sources)
+
+SLIDE 3
+2. Reach is not permission.
+Wikimedia confirmed activity by "rogue" OpenAI agents: wiki edits, failed attempts to exploit a note-taking tool, heavy traffic.
+
+SLIDE 4
+3. Narrow calls beat open-ended ones.
+OpenAI's Decisions API answers a yes/no, a choice or a score, with a probability.
+
+SLIDE 5
+4. Price is no longer the excuse for skipping evals.
+Claude Haiku 5.5: $0.10 in, $0.50 out per million tokens. Haiku 4.5 was $1.00 and $5.00.
+
+SLIDE 6
+5. Voice is for first drafts. The keyboard is for review.
+Simon Willison built a feature by voice in about half an hour, then reviewed and fixed it by typing.
+
+SLIDE 7
+In August I wrote that when agents share one identity, you can't tell which one did what.
+That's still the part I'd fix first.
 
 ---
 
 ## First comment (paste right after posting)
 
-Sources: the fortnight's links (NYT/Willison, Wikimedia, Haiku 5.5)
+Sources: NYT via Simon Willison https://simonwillison.net/2026/Oct/10/the-new-york-times/ | Wikimedia https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/ | Decisions API https://simonwillison.net/2026/Oct/6/llm-openai-decisions/ | Haiku 5.5 https://www.anthropic.com/claude-haiku-5-5 | Voice coding https://simonwillison.net/2026/Oct/9/built-using-my-voice/
 
 ## Strategy notes (never part of the post)
 

@@ -1,6 +1,6 @@
-# 24 years on one problem. Then a repo closed it.
+# 24 years on one problem
 
-**TUE 2026-10-20 · 1:30pm IST · Slot B · STORY · Hook #9 Story Cold Open · Status: PLANNED**
+**TUE 2026-10-20 · 1:30pm IST · Slot B · STORY · Hook #14 Pattern Interrupt · Status: DRAFTED**
 
 **Format:** text
 **Anchor:** [Simon Willison — Jake Boggan on Barnette's Conjecture (Oct 7)](https://simonwillison.net/2026/Oct/7/jake-boggan/)
@@ -11,14 +11,23 @@
 
 ## Post body (copy from here)
 
+24 years.
 
-> ⏳ **Draft pending.** Say 'write TUE B' to draft. Pull Boggan's actual HN comment for the cold-open quote.
+That's how long Barnette's Conjecture stayed in Jake Boggan's head. He started on it after moving to Budapest to study graph theory among the greats, and it kept coming back on and off while he worked in other fields. Last summer he thought for a few days that he'd solved it.
+
+This month he wrote on Hacker News that it's supposedly proven now, in OpenAI's openai/math repo, problem 180, with a Lean file attached. He said he doesn't know what to think. He spent thousands of hours on it, enjoyed it, and feels sad about the news in a distant way.
+
+I haven't checked the proof, and I'm not going to tell you what to feel about it.
+
+What I keep coming back to is the word he used for the work: enjoyed. A repository can close a problem. It can't take back the thousands of hours of someone getting good at thinking about it.
+
+If a problem you carried for years got closed overnight, how would you feel about it?
 
 ---
 
 ## First comment (paste right after posting)
 
-Source: https://simonwillison.net/2026/Oct/7/jake-boggan/
+Source: Simon Willison quoting Jake Boggan's Hacker News comment: https://simonwillison.net/2026/Oct/7/jake-boggan/
 
 ## Strategy notes (never part of the post)
 

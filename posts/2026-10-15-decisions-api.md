@@ -1,6 +1,6 @@
 # When a decision endpoint beats the prompt you already run
 
-**THU 2026-10-15 · 8:30am IST · Slot A · TEACH · Hook #12 The Comparison · Status: PLANNED**
+**THU 2026-10-15 · 8:30am IST · Slot A · TEACH · Hook #12 The Comparison · Status: DRAFTED**
 
 **Format:** text
 **Anchor:** [Simon Willison — llm-openai-decisions plugin (Oct 6)](https://simonwillison.net/2026/Oct/6/llm-openai-decisions/)
@@ -11,14 +11,23 @@
 
 ## Post body (copy from here)
 
+If your prompt ends in "answer yes or no", you probably want a decision endpoint instead.
 
-> ⏳ **Draft pending.** Say 'write Thursday' to draft.
+OpenAI launched one at DevDay. You ask it one of three kinds of question: yes/no, pick from choices, or give a score. What comes back is JSON with a probability attached, not a paragraph you have to parse. Simon Willison wrote an LLM plugin for it, llm-openai-decisions, if you want to try it from the command line.
+
+The price is the part I'd read twice. gpt-6-luna is 10 cents per million input tokens, and output isn't charged. Jev's version of the same API is 4.2 cents. Luna also takes image input, which is the reason I'd still look at it over the cheaper one.
+
+Where I'd use it: routing, moderation-style checks, "does this ticket mention a refund" gates. Places where today you run a chat model, regex the answer and hope.
+
+Where I wouldn't: anywhere the reasoning is the product. A probability isn't an explanation.
+
+I haven't run it yet, so I can't tell you how well those probabilities are calibrated.
 
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison's writeup + the plugin → https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+Source: Simon Willison on the Decisions API and his llm-openai-decisions plugin: https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
 
 ## Strategy notes (never part of the post)
 
