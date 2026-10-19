@@ -179,7 +179,7 @@
 
 <div class="toast" id="toast">Copied ✓</div>
 
-<script src="data.js"></script>
+<script>document.write('<script src="data.js?t='+Date.now()+'"><\/script>')</script>
 <script>
 const OVR_KEY = "li_overrides_v1";
 const getOvr = () => { try { return JSON.parse(localStorage.getItem(OVR_KEY) || "{}"); } catch(e){ return {}; } };
