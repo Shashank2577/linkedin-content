@@ -269,9 +269,9 @@ function openPost(id) {
   const body = document.getElementById("m-body");
   body.innerHTML = liPreview(p) + `
     <div class="copyrow">
-      <button class="btn" ${p.body ? "" : `disabled title="No draft yet — say 'write ${p.day} ${p.slot}' to draft this slot"`} onclick="copyText(${JSON.stringify(p.id)},'body')">${p.body ? "📋 Copy post text" : "📋 No draft yet"}</button>
-      <button class="btn ghost" ${p.firstComment ? "" : `disabled title="No first comment planned for this slot"`} onclick="copyText(${JSON.stringify(p.id)},'fc')">${p.firstComment ? "Copy first comment" : "No first comment"}</button>
-      <button class="btn ghost" ${(p.body || p.firstComment) ? "" : `disabled title="Nothing to copy yet"`} onclick="copyText(${JSON.stringify(p.id)},'both')">Copy both</button>
+      <button class="btn" ${p.body ? "" : `disabled title="No draft yet — say 'write ${p.day} ${p.slot}' to draft this slot"`} onclick="copyText('${p.id}','body')">${p.body ? "📋 Copy post text" : "📋 No draft yet"}</button>
+      <button class="btn ghost" ${p.firstComment ? "" : `disabled title="No first comment planned for this slot"`} onclick="copyText('${p.id}','fc')">${p.firstComment ? "Copy first comment" : "No first comment"}</button>
+      <button class="btn ghost" ${(p.body || p.firstComment) ? "" : `disabled title="Nothing to copy yet"`} onclick="copyText('${p.id}','both')">Copy both</button>
     </div>
     <div class="meta">
       <div class="mrow"><span class="k">Anchor source</span><a href="${p.anchor.url}" target="_blank">${esc(p.anchor.title)}</a></div>
@@ -283,7 +283,7 @@ function openPost(id) {
         ${p.linkedinUrl ? `<div>✅ <a href="${p.linkedinUrl}" target="_blank">${esc(p.linkedinUrl)}</a></div>` : `
         <div class="posted-row">
           <input id="url-${p.id}" placeholder="Paste the LinkedIn post URL…">
-          <button class="btn" onclick="markPosted(${JSON.stringify(p.id)})">Save</button>
+          <button class="btn" onclick="markPosted('${p.id}')">Save</button>
         </div>
         <div class="snippet" id="snip-${p.id}"></div>`}
       </div>
@@ -357,7 +357,7 @@ function renderTracking() {
     posts.map(p => {
       const r = rate(p);
       return `<tr>
-        <td style="cursor:pointer;color:var(--li-blue)" onclick="openPost(${JSON.stringify(p.id)})">${esc(p.title.slice(0,42))}${p.title.length>42?"…":""}</td>
+        <td style="cursor:pointer;color:var(--li-blue)" onclick="openPost('${p.id}')">${esc(p.title.slice(0,42))}${p.title.length>42?"…":""}</td>
         <td>${p.date.slice(5)}</td>
         <td>${p.metrics?.impressions ?? "—"}</td>
         <td>${p.metrics?.reactions ?? "—"}</td>
