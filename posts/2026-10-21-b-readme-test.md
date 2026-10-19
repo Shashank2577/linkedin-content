@@ -15,7 +15,7 @@
 
 Eden was preparing an NLnet grant application for ActivityBot, an open source project, and wanted to test the first-run install experience. So Eden asked on Mastodon for volunteers, paid each €25 for an hour on a video call, and watched them follow the README while thinking aloud. After each session the README was fixed and tested on the next person.
 
-What broke: the demo link was wrong, "rename a hidden file" lost people, nobody was sure whether the demo should run on the web or locally, the section order confused them, and he hadn't said what the software would actually do. Some of the jokes confused people too.
+What broke: the demo link was wrong, "rename a hidden file" lost people, nobody was sure whether the demo should run on the web or locally, the section order confused them, and the README never said what the software would actually do. Some of the jokes confused people too.
 
 Eden didn't use an LLM to simulate users, because the goal was to hear from actual people.
 
