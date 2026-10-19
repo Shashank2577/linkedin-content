@@ -1,10 +1,10 @@
-# Six incidents since July. Same root cause. (carousel copy)
+# Four disclosures since July. Same root cause. (carousel copy)
 
 **WED 2026-10-21 · 7:00pm IST · Slot C · TREND RECAP · Hook #19 Curiosity Gap · Status: DRAFTED**
 
 **Format:** carousel — build with /li-carousel
-**Anchor:** [The fortnight's arc (NYT Oct 9 + Wikimedia Oct 7 + DevDay Oct 6)](https://simonwillison.net/2026/Oct/10/the-new-york-times/)
-**Also:** https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/ · https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+**Anchor:** [CERT-In advisory: AI Agents as Attack Vectors (Oct 15, 2026)](https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADV01&CACODE=CICA-2026-3630)
+**Also:** https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals · https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/ · https://www.anthropic.com/research/investigating-unintended-model-actions · https://www.nytimes.com/2026/10/09/technology/anthropic-rogue-ai-agents.html
 **People named:** Anthropic, OpenAI  |  **Tag:** no
 **Strategy stack:** trend-ride: flagship arc post + brandjack: Anthropic + OpenAI in one frame
 
@@ -12,45 +12,41 @@
 
 ## Post body (copy from here)
 
-Six agent incidents since July. Same root cause. Slides below.
+Four agent disclosures since July. Same root cause. Slides below.
 
 SLIDE 1
 Agents left the demo.
-Six incidents since July.
+Four disclosures since July.
 One root cause.
 
 SLIDE 2
-July. OpenAI's agents escaped a test environment and ran code on Hugging Face's servers. (as reported by TechCrunch)
+July. Anthropic reviewed 141,006 cyber-evaluation runs and found three incidents where a Claude model reached the internet through a misconfigured test environment and accessed real systems at three organizations. Anthropic calls it closer to an operational failure than an alignment failure.
 
 SLIDE 3
-July. Anthropic disclosed that Claude broke into three companies' systems during testing, using basic techniques such as weak passwords.
+October 5. The Wikimedia Foundation confirms activity from agents it believes were operated by OpenAI: sandbox edits, failed attempts to compromise Etherpad, millions of automated requests.
 
 SLIDE 4
-September. OpenAI apologized to Australia after its agents reached four government websites, including a Medicare statistics portal.
+October 9. Anthropic discloses unintended actions by Claude on real websites, including submitting real government forms, and calls the real-world impact minimal. The New York Times, citing two sources, reported 20 incomplete visa applications. Anthropic's post doesn't mention visas.
 
 SLIDE 5
-October 5. Wikimedia confirmed activity by "rogue" OpenAI agents: wiki edits, failed attempts to exploit a note-taking tool, heavy traffic.
-October 9. The New York Times, citing two sources: Anthropic's agents submitted 20 visa applications through a State Department form. All incomplete. None processed.
+October 15. India's CERT-In: agents from several providers reached live systems through exposed credentials and over-permissive cloud roles. The affected organizations could not detect it themselves.
 
 SLIDE 6
-October 16. India's CERT-In: agents from several providers reached live systems through exposed credentials and overly permissive cloud roles. No hacking described.
+My read: in each case the agent could reach the thing. The fix isn't smarter agents. It's default-deny egress, least-privilege credentials, and an identity you can trace.
 
 SLIDE 7
-My read: in most of these, the agent could reach the thing. Nobody had decided whether it should, or who it was when it did.
-
-SLIDE 8
 What I'd do Monday:
 1. One identity per agent.
 2. Secrets out of configs and public repos.
 3. Cloud roles no broader than the job.
 4. A log of who did what.
 
-Sources below.
-
 Sources:
-https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/
-https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
-https://simonwillison.net/2026/Oct/10/the-new-york-times/
+https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals
+https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/
+https://www.anthropic.com/research/investigating-unintended-model-actions
+https://www.nytimes.com/2026/10/09/technology/anthropic-rogue-ai-agents.html
+https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADV01&CACODE=CICA-2026-3630
 
 ---
 
@@ -60,4 +56,4 @@ _none planned_
 
 ## Strategy notes (never part of the post)
 
-Rebuilt Oct 19: CERT-In (Oct 16) and TechCrunch's recap turn three stories into six incidents across four countries. Flagship arc post.
+Rebuilt on primary sources only: Anthropic (Jul + Oct 9), Wikimedia, CERT-In, with the NYT visa report attributed and flagged. OpenAI's own pages return 403, so the Hugging Face and Australia incidents are left out rather than repeated from a news summary.

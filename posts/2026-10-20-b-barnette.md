@@ -3,7 +3,8 @@
 **TUE 2026-10-20 · 1:30pm IST · Slot B · STORY · Hook #14 Pattern Interrupt · Status: DRAFTED**
 
 **Format:** text
-**Anchor:** [Simon Willison — Jake Boggan on Barnette's Conjecture (Oct 7)](https://simonwillison.net/2026/Oct/7/jake-boggan/)
+**Anchor:** [Hacker News comment by jboggan on Barnette's Conjecture](https://news.ycombinator.com/item?id=49984923#49987367)
+**Also:** https://github.com/openai/math · https://simonwillison.net/2026/Oct/7/jake-boggan/
 **People named:** Jake Boggan, OpenAI  |  **Tag:** no
 **Strategy stack:** namejack: Boggan (via Willison) + trend-ride: 'what's left for humans' undercurrent
 
@@ -13,18 +14,21 @@
 
 24 years.
 
-That's how long Barnette's Conjecture stayed in Jake Boggan's head. He started on it after moving to Budapest to study graph theory among the greats, and it kept coming back on and off while he worked in other fields. Last summer he thought for a few days that he'd solved it.
+That's how long Barnette's Conjecture stayed in one person's head. A Hacker News commenter, jboggan, wrote that they started on it after moving to Budapest to study graph theory among the greats, and that it kept coming back, on and off, while they worked in other fields. Last summer they thought for a few days that they'd solved it.
 
-This month he wrote on Hacker News that it's supposedly proven now, in OpenAI's openai/math repo, problem 180, with a Lean file attached. He said he doesn't know what to think. He spent thousands of hours on it, enjoyed it, and feels sad about the news in a distant way.
+The thread was about OpenAI's openai/math release, where the conjecture is supposedly proven as problem 180. They hadn't seen a formal proof yet, so they were reading the paper, and said its approach resembled one they'd considered and dropped 24 years ago.
+
+They spent thousands of hours on it and enjoyed it. The news left them sad in a far-off way.
 
 I haven't checked the proof, and I'm not going to tell you what to feel about it.
 
-What I keep coming back to is the word he used for the work: enjoyed. A repository can close a problem. It can't take back the thousands of hours of someone getting good at thinking about it.
+What I keep coming back to is the word they used: enjoyed. A repository can close a problem. It can't take back the thousands of hours of someone getting good at thinking about it.
 
-If a problem you carried for years got closed overnight, how would you feel about it?
+If a problem you carried for years got closed overnight, how would you feel?
 
-Source:
-https://simonwillison.net/2026/Oct/7/jake-boggan/
+Sources:
+The comment: https://news.ycombinator.com/item?id=49984923#49987367
+The release: https://github.com/openai/math
 
 ---
 

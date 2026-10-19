@@ -3,7 +3,8 @@
 **MON 2026-10-19 · 1:30pm IST · Slot B · TOOL REVIEW · Hook #10 The Receipt · Status: DRAFTED**
 
 **Format:** text
-**Anchor:** [Simon Willison — ttok 1.0 (Oct 9)](https://simonwillison.net/2026/Oct/9/ttok/)
+**Anchor:** [ttok 1.0 release (GitHub)](https://github.com/simonw/ttok/releases/tag/1.0)
+**Also:** https://github.com/williamliu-ai/token-count-compare/commit/8d8a2178538bb37beb548fc37378135e4ff4b0c8 · https://github.com/openai/tiktoken/issues/608
 **People named:** Simon Willison, William Liu  |  **Tag:** YES — Willison (positive review, Tier-1, he engages)
 **Strategy stack:** namejack: Willison + teach + tool review = your proven format
 
@@ -23,8 +24,10 @@ I'd trust it for budgeting prompts. I wouldn't treat it as a billing guarantee.
 
 If you already have it: uv tool upgrade ttok
 
-Source:
-https://simonwillison.net/2026/Oct/9/ttok/
+Sources:
+ttok 1.0 release: https://github.com/simonw/ttok/releases/tag/1.0
+William Liu's comparison: https://github.com/williamliu-ai/token-count-compare/commit/8d8a2178538bb37beb548fc37378135e4ff4b0c8
+The open tiktoken question: https://github.com/openai/tiktoken/issues/608
 
 ---
 

@@ -3,7 +3,8 @@
 **SAT 2026-10-24 · 9:00am IST · Slot A · TEACH · Hook #5 The List Promise · Status: DRAFTED**
 
 **Format:** text
-**Anchor:** [Michael Lynch — Anti-Patterns in Software Blogging (via Willison, Oct 7)](https://simonwillison.net/2026/Oct/7/anti-patterns-in-software-blogging/)
+**Anchor:** [Michael Lynch: Anti-Patterns in Software Blogging](https://refactoringenglish.com/blog/anti-patterns-software-blogging/)
+**Also:** https://simonwillison.net/2026/Oct/7/anti-patterns-in-software-blogging/
 **People named:** Michael Lynch, Simon Willison  |  **Tag:** no
 **Strategy stack:** trend-ride: meta (posting-about-posting works Saturdays) + story
 
@@ -13,7 +14,7 @@
 
 Eight posts in eleven days, then 37 days of nothing. I'm back, and this is the checklist I'm holding every post to.
 
-It's borrowed from Michael Lynch's anti-patterns for software blogging, which Simon Willison pointed to last week. Five things:
+It's borrowed from Michael Lynch's anti-patterns for software blogging, which I read this week. Five things:
 
 1. Meandering intros. If the first line doesn't carry the point, cut it.
 
@@ -21,7 +22,7 @@ It's borrowed from Michael Lynch's anti-patterns for software blogging, which Si
 
 3. Assuming you've read my earlier posts. You haven't, and you shouldn't need to.
 
-4. Writing too formally. His rule is simply to write the way you talk.
+4. Writing too formally. The rule is simply to write the way you talk.
 
 5. Leaning on links instead of explaining. A post should still make sense if nobody clicks anything.
 
@@ -29,8 +30,8 @@ Number five is the one I'm still arguing with myself about. On LinkedIn, links i
 
 If a post fails the checklist, I'd rather skip the day than ship it.
 
-Source:
-https://simonwillison.net/2026/Oct/7/anti-patterns-in-software-blogging/
+Source (Michael Lynch, Anti-Patterns in Software Blogging):
+https://refactoringenglish.com/blog/anti-patterns-software-blogging/
 
 ---
 

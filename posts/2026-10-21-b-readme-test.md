@@ -11,13 +11,13 @@
 
 ## Post body (copy from here)
 
-€150. That's roughly what Terence Eden spent to find out his README didn't work.
+€150. That's roughly what Terence Eden spent to find out the README didn't work.
 
-He was preparing an NLnet grant application for ActivityBot, his open source project, and wanted to test the first-run install experience. So he asked on Mastodon for volunteers, paid each €25 for an hour on a video call, and watched them follow the README while thinking aloud. After each session he fixed the README and tested it on the next person.
+Eden was preparing an NLnet grant application for ActivityBot, an open source project, and wanted to test the first-run install experience. So Eden asked on Mastodon for volunteers, paid each €25 for an hour on a video call, and watched them follow the README while thinking aloud. After each session the README was fixed and tested on the next person.
 
-What broke: the demo link was wrong, "rename a hidden file" lost people, nobody was sure whether the demo should run on the web or locally, the section order confused them, and he hadn't said what the software would actually do. He also noted that his jokes were confusing.
+What broke: the demo link was wrong, "rename a hidden file" lost people, nobody was sure whether the demo should run on the web or locally, the section order confused them, and he hadn't said what the software would actually do. Some of the jokes confused people too.
 
-He didn't use an LLM to simulate users. He wanted to hear from actual people.
+Eden didn't use an LLM to simulate users, because the goal was to hear from actual people.
 
 My addition: agents read your README before your users do, and they won't tell you it's confusing. They'll just do something. If a stranger can't follow it on a call, I wouldn't expect a coding agent to do better.
 

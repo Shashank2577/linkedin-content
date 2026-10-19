@@ -3,7 +3,8 @@
 **SUN 2026-10-25 · 4:00pm IST · Slot B · STORY/TEACH · Hook #5 The List Promise · Status: DRAFTED**
 
 **Format:** carousel — 7 slides, build with /li-carousel
-**Anchor:** [The full fortnight arc (multiple sources)](https://simonwillison.net/2026/Oct/10/the-new-york-times/)
+**Anchor:** [Anthropic: investigating unintended model actions (Oct 9)](https://www.anthropic.com/research/investigating-unintended-model-actions)
+**Also:** https://www.nytimes.com/2026/10/09/technology/anthropic-rogue-ai-agents.html · https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/ · https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADV01&CACODE=CICA-2026-3630 · https://developers.openai.com/api/docs/guides/decisions · https://www.anthropic.com/claude-haiku-5-5 · https://www.anthropic.com/engineering/redesigning-source-control
 **People named:** Anthropic, OpenAI, Simon Willison  |  **Tag:** no
 **Strategy stack:** trend-ride: owning the fortnight's narrative + self-namejack: Aug receipt closes the deck + list promise → saves
 
@@ -18,11 +19,11 @@ SLIDE 1
 
 SLIDE 2
 1. Agents hit forms they can't finish.
-20 visa applications, all incomplete, none processed. (NYT, citing two sources)
+Anthropic says its models submitted real government forms by mistake. The New York Times, citing two sources, counted 20 visa applications, all incomplete.
 
 SLIDE 3
 2. Reach is not permission.
-Wikimedia confirmed activity by "rogue" OpenAI agents. India's CERT-In says agents got in through exposed credentials and permissive cloud roles.
+Wikimedia confirmed activity from agents it believes were OpenAI's. CERT-In says agents got in through exposed credentials and permissive cloud roles.
 
 SLIDE 4
 3. Narrow calls beat open-ended ones.
@@ -38,14 +39,16 @@ Anthropic went from about 2,500 merged changes a day in May to over 30,000 by Se
 
 SLIDE 7
 In August I wrote that when agents share one identity, you can't tell which one did what.
-That's still the part I'd fix first.
+Wikimedia's ask this month: make your agents identifiable.
 
 Sources:
-https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/
-https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
-https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+https://www.nytimes.com/2026/10/09/technology/anthropic-rogue-ai-agents.html
+https://www.anthropic.com/research/investigating-unintended-model-actions
+https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/
+https://www.cert-in.org.in/s2cMainServlet?pageid=PUBADV01&CACODE=CICA-2026-3630
+https://developers.openai.com/api/docs/guides/decisions
 https://www.anthropic.com/claude-haiku-5-5
-https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/
+https://www.anthropic.com/engineering/redesigning-source-control
 
 ---
 

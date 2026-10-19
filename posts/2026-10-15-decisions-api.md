@@ -3,7 +3,8 @@
 **THU 2026-10-15 · 8:30am IST · Slot A · TEACH · Hook #12 The Comparison · Status: DRAFTED**
 
 **Format:** text
-**Anchor:** [Simon Willison — llm-openai-decisions plugin (Oct 6)](https://simonwillison.net/2026/Oct/6/llm-openai-decisions/)
+**Anchor:** [OpenAI Decisions API documentation](https://developers.openai.com/api/docs/guides/decisions)
+**Also:** https://simonwillison.net/2026/Oct/6/llm-openai-decisions/ · https://techcrunch.com/2026/10/16/jev-is-vercels-fastest-adopted-ai-model-ever/
 **People named:** Simon Willison, OpenAI  |  **Tag:** no
 **Strategy stack:** teach-as-freshness (newsjack dead at day 9) + namejack: Willison + brandjack: OpenAI DevDay + hot take (optional): most prod prompts are decision endpoints in a trenchcoat
 
@@ -13,19 +14,20 @@
 
 If your prompt ends in "answer yes or no", you probably want a decision endpoint instead.
 
-OpenAI launched one at DevDay. You ask it one of three kinds of question: yes/no, pick from choices, or give a score. What comes back is JSON with a probability attached, not a paragraph you have to parse. Simon Willison wrote an LLM plugin for it, llm-openai-decisions, if you want to try it from the command line.
+OpenAI's Decisions API takes text, images or both and answers typed questions. A predicate returns the probability that a condition is true. A choice picks one of your values, with probabilities and a confidence. A score rates the input against ordered levels. You get structured answers back, not a paragraph to parse.
 
-The price is the part I'd read twice. gpt-6-luna is 10 cents per million input tokens, and output isn't charged. Jev, Vercel's model, is 4.2 cents for the same kind of call. Luna also takes image input, which is the reason I'd still look at it over the cheaper one.
+The price is the part I'd read twice. OpenAI lists $0.10 per million input tokens for gpt-6-luna, with no charge for output or cache. Simon Willison puts Jev, Vercel's model, at 4.2 cents for the same kind of call, and notes that Luna also accepts images.
 
-Where I'd use it: routing, moderation-style checks, "does this ticket mention a refund" gates. Places where today you run a chat model, regex the answer and hope.
+Read the limits too. It's in public beta, gpt-6-luna is the only supported model, decisions are independent per request, and images have to be inline base64, not URLs.
 
-Where I wouldn't: anywhere the reasoning is the product. A probability isn't an explanation.
+Where I'd use it: routing, moderation-style checks, "does this ticket mention a refund" gates. Where I wouldn't: anywhere the reasoning is the product. A probability isn't an explanation.
 
-I haven't run it yet, so I can't tell you how well those probabilities are calibrated.
+I haven't run it, so I can't tell you how well those probabilities are calibrated.
 
-Source:
-https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
-https://techcrunch.com/2026/10/16/jev-is-vercels-fastest-adopted-ai-model-ever/
+Sources:
+OpenAI's Decisions API docs: https://developers.openai.com/api/docs/guides/decisions
+Simon Willison's plugin and the Jev price: https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+Jev adoption (TechCrunch): https://techcrunch.com/2026/10/16/jev-is-vercels-fastest-adopted-ai-model-ever/
 
 ---
 

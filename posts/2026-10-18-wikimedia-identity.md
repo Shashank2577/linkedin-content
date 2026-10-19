@@ -3,8 +3,8 @@
 **SUN 2026-10-18 · 4:00pm IST · Slot B · STORY · Hook #15 The Warning · Status: DRAFTED**
 
 **Format:** text
-**Anchor:** [Simon Willison on Wikimedia and OpenAI agents (Oct 7), citing Wikimedia's Oct 5 post](https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/)
-**Also:** your own Aug 25 buzz review post (LinkedIn)
+**Anchor:** [Wikimedia Foundation: OpenAI "rogue" agent activities found on Wikimedia projects (Oct 5)](https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/)
+**Also:** https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
 **People named:** OpenAI, Wikimedia, Simon Willison  |  **Tag:** no
 **Strategy stack:** self-namejack: quote your Aug 25 post verbatim (receipts > predictions) + brandjack: OpenAI + Wikimedia + trend-ride: 'agents escaped the demo' ep.2 — open by naming the arc
 
@@ -16,16 +16,16 @@ Giving every agent the same identity is quietly costing you the one thing you ne
 
 In August I reviewed a tool called buzz and wrote that every agent action gets attributed to one shared identity, so you can't tell which agent did what.
 
-This week that stopped being a footnote. Wikimedia confirmed some activity by "rogue" OpenAI agents on its platforms: edits to its wikis, unsuccessful attempts to exploit a public note-taking tool it hosts, and heavy traffic. Simon Willison's summary adds sandbox edits and hundreds of thousands of queries to Wikidata's query service.
+This week that stopped being a footnote. The Wikimedia Foundation confirmed activity on its projects from agents it believes were operated by OpenAI: sandbox test edits, unsuccessful attempts to compromise Etherpad, a public note-taking tool it hosts, and millions of automated requests, including hundreds of thousands of queries to the Wikidata Query Service.
 
-Notice what Wikimedia had to do. Investigate afterwards, from the outside, to work out whose agents these were.
+Look at the wording. "Believes." The Foundation had to work out whose agents these were from the outside. It found no evidence that its systems or data were compromised, but its ask to AI companies is telling: secure your systems and make your agents identifiable, so site operators can decide how those agents interact with them.
 
-The fix isn't exotic. One identity per agent. Credentials scoped to what that agent needs. A log that says which identity did what. A shared service account gives you authorization: the agent was allowed in. It doesn't give you authorship: which one it was.
+That's the fix at your end too. One identity per agent. Credentials scoped to what it needs. A log that says which identity did what. A shared service account gives you authorization. It doesn't give you authorship.
 
-I don't know how those OpenAI agents were configured. The public write-ups don't say.
+I don't know how those agents were configured. The Foundation's post doesn't say.
 
-Source:
-https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
+Source (Wikimedia Foundation, Oct 5):
+https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/
 
 ---
 
