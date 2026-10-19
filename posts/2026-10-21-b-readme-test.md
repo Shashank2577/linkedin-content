@@ -23,11 +23,14 @@ My addition: agents read your README before your users do, and they won't tell y
 
 The free version: find three people and make them think aloud.
 
+Source:
+https://shkspr.mobi/blog/2026/10/i-paid-people-to-try-and-follow-my-readme/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Terence Eden, I paid people to try and follow my README: https://shkspr.mobi/blog/2026/10/i-paid-people-to-try-and-follow-my-readme/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

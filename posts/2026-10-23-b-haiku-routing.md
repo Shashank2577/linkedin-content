@@ -23,11 +23,14 @@ Terminal-Bench is where it gets lopsided: 39.2% for Haiku 5.5 against 70.6% for 
 
 What do you do? I'd start cheap, escalate on failure, and log every escalation.
 
+Source:
+https://www.anthropic.com/claude-haiku-5-5
+
 ---
 
 ## First comment (paste right after posting)
 
-Source (Anthropic): https://www.anthropic.com/claude-haiku-5-5
+_none planned_
 
 ## Strategy notes (never part of the post)
 

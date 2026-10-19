@@ -23,11 +23,14 @@ I'd trust it for budgeting prompts. I wouldn't treat it as a billing guarantee.
 
 If you already have it: uv tool upgrade ttok
 
+Source:
+https://simonwillison.net/2026/Oct/9/ttok/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison, ttok 1.0: https://simonwillison.net/2026/Oct/9/ttok/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

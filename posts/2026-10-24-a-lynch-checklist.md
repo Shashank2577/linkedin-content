@@ -29,11 +29,14 @@ Number five is the one I'm still arguing with myself about. On LinkedIn, links i
 
 If a post fails the checklist, I'd rather skip the day than ship it.
 
+Source:
+https://simonwillison.net/2026/Oct/7/anti-patterns-in-software-blogging/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Michael Lynch's advice, via Simon Willison: https://simonwillison.net/2026/Oct/7/anti-patterns-in-software-blogging/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

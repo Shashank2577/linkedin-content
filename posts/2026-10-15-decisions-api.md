@@ -23,11 +23,14 @@ Where I wouldn't: anywhere the reasoning is the product. A probability isn't an 
 
 I haven't run it yet, so I can't tell you how well those probabilities are calibrated.
 
+Source:
+https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison on the Decisions API and his llm-openai-decisions plugin: https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

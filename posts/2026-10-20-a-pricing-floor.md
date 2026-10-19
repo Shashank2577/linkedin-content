@@ -22,11 +22,16 @@ That's the vendor's table, so check it against your own tasks. But if your build
 
 Same window: Sonnet 5.5 on September 28, described as up to 30% cheaper for most work, and Opus 5.5 on September 22, described as 40% cheaper than Opus 5.
 
+Sources:
+https://www.anthropic.com/claude-haiku-5-5
+https://www.anthropic.com/claude-sonnet-5-5
+https://www.anthropic.com/claude-opus-5-5
+
 ---
 
 ## First comment (paste right after posting)
 
-Sources (Anthropic): Haiku 5.5 https://www.anthropic.com/claude-haiku-5-5 | Sonnet 5.5 https://www.anthropic.com/claude-sonnet-5-5 | Opus 5.5 https://www.anthropic.com/claude-opus-5-5
+_none planned_
 
 ## Strategy notes (never part of the post)
 

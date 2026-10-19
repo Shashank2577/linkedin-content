@@ -23,11 +23,14 @@ What I keep coming back to is the word he used for the work: enjoyed. A reposito
 
 If a problem you carried for years got closed overnight, how would you feel about it?
 
+Source:
+https://simonwillison.net/2026/Oct/7/jake-boggan/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison quoting Jake Boggan's Hacker News comment: https://simonwillison.net/2026/Oct/7/jake-boggan/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

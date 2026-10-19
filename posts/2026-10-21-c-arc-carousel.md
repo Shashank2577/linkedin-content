@@ -41,11 +41,16 @@ SLIDE 7
 Reach is not permission.
 Sources in the first comment.
 
+Sources:
+https://simonwillison.net/2026/Oct/10/the-new-york-times/
+https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
+https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+
 ---
 
 ## First comment (paste right after posting)
 
-Sources: NYT via Simon Willison https://simonwillison.net/2026/Oct/10/the-new-york-times/ | Wikimedia via Simon Willison https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/ | Decisions API https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

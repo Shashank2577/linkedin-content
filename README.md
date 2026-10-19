@@ -12,7 +12,7 @@ previews, one-tap copy, and engagement tracking.
 | path | what it is |
 | --- | --- |
 | `index.html` + `data.js` | the dashboard (calendar, previews, copy buttons, tracking) |
-| `posts/*.md` | one file per post — copy-friendly canonical text + first comment + strategy notes |
+| `posts/*.md` | one file per post — copy-friendly canonical text (with source link) + strategy notes |
 | `plans/*.md` | the weekly plans (strategy, times, engage lists, 5-strategy stacks) |
 | `tracking/README.md` | how post verification + engagement tracking works |
 | `build_posts.js` | regenerates `posts/*.md` from `data.js` — `node build_posts.js` |
@@ -25,8 +25,8 @@ previews, one-tap copy, and engagement tracking.
    B 1:30pm / C 7:00pm IST; slot B is the droppable one).
 2. **Draft** — posts are drafted in batches (Sun night: Mon–Wed; Wed night:
    Thu–Sun) via the `li-post` skill, then committed here.
-3. **Post** — manual or LinkedIn's native scheduler. Source link goes in the
-   FIRST COMMENT by hand (schedulers can't post it).
+3. **Post** — manual or LinkedIn's native scheduler. The link to the
+   original article is already in the post text.
 4. **Track** — paste the live post URL on the dashboard card → send the
    generated line to Claude → engagement gets pulled through your own
    logged-in browser and the page updates. See `tracking/README.md`.

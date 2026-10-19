@@ -5,8 +5,8 @@ How a post goes from draft to measured, and what the honest limits are.
 ## The loop
 
 1. **Post** — manually, or via LinkedIn's native scheduler (composer → clock
-   icon). The source link goes in the **first comment, by hand**, ~2 minutes
-   after the post lands. Schedulers can't post first comments.
+   icon). The link to the original article is already inside the post text,
+   so scheduling needs no manual follow-up.
 2. **Register** — on the dashboard, open the post's card → *Mark as posted* →
    paste the LinkedIn URL → save. The page copies a line like
    `POSTED: 2026-10-19-a-talent-gap — https://…` — paste that line to Claude
@@ -35,9 +35,10 @@ How a post goes from draft to measured, and what the honest limits are.
 - You can always paste numbers by hand: `ENGAGEMENT: <post-id>`, then
   impressions / reactions / comments / reposts — or paste an analytics
   screenshot in chat. Manual entry is a first-class path, not a fallback.
-- First-comment vs body-link reach is being A/B-tested this fortnight
-  (Oct 13 post used a body link; the plan defaults to first-comment).
-  The Tracking tab is where that answer lands.
+- Every post carries its original-article link in the body (your rule:
+  brandjack, namejack, newsjack and hot-take posts always link the source).
+  LinkedIn can down-rank outbound links, so the Tracking tab is where we
+  find out whether it costs reach for this audience.
 
 ## The safety valve
 

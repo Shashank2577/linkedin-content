@@ -41,11 +41,18 @@ SLIDE 7
 In August I wrote that when agents share one identity, you can't tell which one did what.
 That's still the part I'd fix first.
 
+Sources:
+https://simonwillison.net/2026/Oct/10/the-new-york-times/
+https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
+https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+https://www.anthropic.com/claude-haiku-5-5
+https://simonwillison.net/2026/Oct/9/built-using-my-voice/
+
 ---
 
 ## First comment (paste right after posting)
 
-Sources: NYT via Simon Willison https://simonwillison.net/2026/Oct/10/the-new-york-times/ | Wikimedia https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/ | Decisions API https://simonwillison.net/2026/Oct/6/llm-openai-decisions/ | Haiku 5.5 https://www.anthropic.com/claude-haiku-5-5 | Voice coding https://simonwillison.net/2026/Oct/9/built-using-my-voice/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

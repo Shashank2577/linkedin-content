@@ -24,12 +24,14 @@ The fix isn't exotic. One identity per agent. Credentials scoped to what that ag
 
 I don't know how those OpenAI agents were configured. The public write-ups don't say.
 
+Source:
+https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
+
 ---
 
 ## First comment (paste right after posting)
 
-Sources: Wikimedia's investigation, as summarized by Simon Willison: https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
-My August buzz review: [paste the LinkedIn link to your Aug 25 post]
+My August buzz review: [paste the LinkedIn link to your Aug 25 post here]
 
 ## Strategy notes (never part of the post)
 

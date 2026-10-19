@@ -23,11 +23,14 @@ My rule is simple. Before an agent touches a real workflow, there's a set of cas
 
 It's my rule, not an industry standard.
 
+Source:
+https://simonwillison.net/2026/Oct/11/dwarf-fortress/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison, Dwarf Fortress and version control: https://simonwillison.net/2026/Oct/11/dwarf-fortress/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

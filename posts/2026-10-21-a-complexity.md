@@ -21,11 +21,14 @@ The exit isn't to slow down. It's to set a limit on what the team accepts withou
 
 If nobody can explain it, you didn't ship a feature. You shipped a liability with a green build.
 
+Source:
+https://simonwillison.net/2026/Oct/8/carson-gross/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Carson Gross, via Simon Willison: https://simonwillison.net/2026/Oct/8/carson-gross/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

@@ -21,11 +21,14 @@ That gap matters more now than it did in 2023, because the thing running your sc
 
 If you're betting an agent stack on a runtime, check what its permission model can actually say. Then check who's going to keep maintaining it.
 
+Source:
+https://simonwillison.net/2026/Oct/9/deno-is-joining-cloudflare/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison, Deno is joining Cloudflare: https://simonwillison.net/2026/Oct/9/deno-is-joining-cloudflare/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

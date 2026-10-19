@@ -24,11 +24,15 @@ If you're adopting AI-driven scanning, the number I'd track isn't findings per w
 
 A scanner that finds 200 things and a team that fixes 5 has a backlog, not security.
 
+Sources:
+https://www.anthropic.com/news/anthropic-cyber-mission
+https://www.anthropic.com/news/cyber-verification-program
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Anthropic, Introducing the Anthropic Cyber Mission (Oct 8): https://www.anthropic.com/news/anthropic-cyber-mission
+_none planned_
 
 ## Strategy notes (never part of the post)
 

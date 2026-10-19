@@ -21,11 +21,14 @@ Two things I'd keep in mind. Entry is by nomination from organizations, and the 
 
 Still, when the vendor tells you where the talent shortage is, it's worth hearing. It's the part after the demo.
 
+Source:
+https://www.anthropic.com/news/claude-frontier-academy
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Anthropic, Claude Frontier Academy (Oct 2): https://www.anthropic.com/news/claude-frontier-academy
+_none planned_
 
 ## Strategy notes (never part of the post)
 

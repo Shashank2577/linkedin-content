@@ -22,12 +22,15 @@ So the pattern I'd take from it: voice for the first pass when your hands are bu
 
 What I'd still like to see is how the review time holds up across different feature sizes. One kitchen session isn't a benchmark.
 
+Sources:
+https://simonwillison.net/2026/Oct/9/built-using-my-voice/
+https://betterwispr.com/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Simon Willison, a new feature for my blog, built using my voice: https://simonwillison.net/2026/Oct/9/built-using-my-voice/
-Also on HN this week: BetterWispr, free open-source dictation for Mac: https://betterwispr.com/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

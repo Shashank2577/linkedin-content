@@ -23,11 +23,14 @@ Nobody's prompt said any of that. Those were decisions the agent made silently, 
 
 You still have to decide what failure looks like before you ask for the code.
 
+Source:
+https://itsallaboutthebit.com/i-am-sorry-but-you-still-have-to-think/
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Piotr Sarnacki, I'm sorry, but you still have to think: https://itsallaboutthebit.com/i-am-sorry-but-you-still-have-to-think/
+_none planned_
 
 ## Strategy notes (never part of the post)
 

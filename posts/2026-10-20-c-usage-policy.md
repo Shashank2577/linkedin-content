@@ -27,11 +27,14 @@ I read the October 8 post looking for new agent rules. There aren't any, beyond 
 
 Anthropic says enforcement is unchanged for the clarified items. Run this against what's already in production, not what you're planning.
 
+Source:
+https://www.anthropic.com/news/2026-usage-policy-update
+
 ---
 
 ## First comment (paste right after posting)
 
-Source: Anthropic, 2026 Usage Policy update (effective Nov 12): https://www.anthropic.com/news/2026-usage-policy-update
+_none planned_
 
 ## Strategy notes (never part of the post)
 
