@@ -1,6 +1,6 @@
 # A prompting gap is not why enterprises can't ship AI
 
-**MON 2026-10-19 · 8:30am IST · Slot A · OPINION · Hook #11 Myth Bust · Status: DRAFTED**
+**MON 2026-10-19 · 8:30am IST · Slot A · OPINION · Hook #11 Myth Bust · Status: PARKED**
 
 **Format:** text
 **Anchor:** [Anthropic — $100M Frontier Academy (Oct 2)](https://www.anthropic.com/news/claude-frontier-academy)

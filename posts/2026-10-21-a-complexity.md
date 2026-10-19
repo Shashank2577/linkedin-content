@@ -1,6 +1,6 @@
 # Shipping code faster than your team can read it
 
-**WED 2026-10-21 · 8:30am IST · Slot A · OPINION · Hook #15 The Warning · Status: DRAFTED**
+**WED 2026-10-21 · 8:30am IST · Slot A · OPINION · Hook #15 The Warning · Status: PARKED**
 
 **Format:** text
 **Anchor:** [Carson Gross on programming careers (via Willison, Oct 8)](https://simonwillison.net/2026/Oct/8/carson-gross/)

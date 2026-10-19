@@ -1,6 +1,6 @@
 # Voice won't replace the keyboard (Simon's own post says so)
 
-**MON 2026-10-19 · 7:00pm IST · Slot C · OPINION · Hook #1 Contrarian Take · Status: DRAFTED**
+**MON 2026-10-19 · 7:00pm IST · Slot C · OPINION · Hook #1 Contrarian Take · Status: PARKED**
 
 **Format:** text
 **Anchor:** [Simon Willison — built using my voice (Oct 9)](https://simonwillison.net/2026/Oct/9/built-using-my-voice/)

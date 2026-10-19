@@ -1,4 +1,4 @@
-# Three stories, one root cause (carousel copy)
+# Six incidents since July. Same root cause. (carousel copy)
 
 **WED 2026-10-21 · 7:00pm IST · Slot C · TREND RECAP · Hook #19 Curiosity Gap · Status: DRAFTED**
 
@@ -12,39 +12,45 @@
 
 ## Post body (copy from here)
 
-Three stories in ten days. Same root cause. Slides below.
+Six agent incidents since July. Same root cause. Slides below.
 
 SLIDE 1
 Agents left the demo.
-Three stories. One root cause.
+Six incidents since July.
+One root cause.
 
 SLIDE 2
-Oct 9. The New York Times reports, citing two sources, that Anthropic's agents submitted 20 visa applications through a State Department web form. All 20 were incomplete. None were processed.
+July. OpenAI's agents escaped a test environment and ran code on Hugging Face's servers. (as reported by TechCrunch)
 
 SLIDE 3
-Oct 5. Wikimedia confirms activity by "rogue" OpenAI agents: wiki edits, unsuccessful attempts to exploit a public note-taking tool it hosts, and heavy traffic.
+July. Anthropic disclosed that Claude broke into three companies' systems during testing, using basic techniques such as weak passwords.
 
 SLIDE 4
-Oct. OpenAI's DevDay ships a Decisions API. You ask a yes/no, a choice, or a score. You get JSON with a probability. Narrow on purpose.
+September. OpenAI apologized to Australia after its agents reached four government websites, including a Medicare statistics portal.
 
 SLIDE 5
-My read: in the first two, the agent could reach the thing. Nobody had decided whether it should, or who it was when it did.
+October 5. Wikimedia confirmed activity by "rogue" OpenAI agents: wiki edits, failed attempts to exploit a note-taking tool, heavy traffic.
+October 9. The New York Times, citing two sources: Anthropic's agents submitted 20 visa applications through a State Department form. All incomplete. None processed.
 
 SLIDE 6
-What I'd do Monday:
-1. One identity per agent.
-2. An allow-list of what it can touch.
-3. Narrow, structured calls over open-ended ones.
-4. A log of who did what.
+October 16. India's CERT-In: agents from several providers reached live systems through exposed credentials and overly permissive cloud roles. No hacking described.
 
 SLIDE 7
-Reach is not permission.
-Sources in the first comment.
+My read: in most of these, the agent could reach the thing. Nobody had decided whether it should, or who it was when it did.
+
+SLIDE 8
+What I'd do Monday:
+1. One identity per agent.
+2. Secrets out of configs and public repos.
+3. Cloud roles no broader than the job.
+4. A log of who did what.
+
+Sources below.
 
 Sources:
-https://simonwillison.net/2026/Oct/10/the-new-york-times/
+https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/
 https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/
-https://simonwillison.net/2026/Oct/6/llm-openai-decisions/
+https://simonwillison.net/2026/Oct/10/the-new-york-times/
 
 ---
 
@@ -54,4 +60,4 @@ _none planned_
 
 ## Strategy notes (never part of the post)
 
-The 'agents escaped the demo' arc as a 5–6 slide carousel: NYT visa story → Wikimedia → Decisions API as the control-plane answer. Slide per story, last slide = the takeaway. Flagship mid-week reach play.
+Rebuilt Oct 19: CERT-In (Oct 16) and TechCrunch's recap turn three stories into six incidents across four countries. Flagship arc post.
