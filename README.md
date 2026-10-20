@@ -34,7 +34,7 @@ previews, one-tap copy, and engagement tracking.
 ## The 5 attention strategies (applied to every post)
 
 Newsjacking · Namejacking · Brandjacking · Hot take · Trend-riding —
-defined with guardrails in `plans/week-oct-19.md`.
+defined with guardrails in `plans/week-oct-20-reverse-engineering.md`.
 
 Deliberately **not** in this repo: `voice.md` (the private voice profile that
 drives drafting).
