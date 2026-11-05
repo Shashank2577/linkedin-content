@@ -132,6 +132,7 @@
   <div class="tabs">
     <button class="tab" data-view="oct12">Week of Oct 12</button>
     <button class="tab" data-view="oct19">Oct 20–25: Reverse engineering</button>
+    <button class="tab" data-view="nov2">Nov 2–8: Agent receipts</button>
     <button class="tab" data-view="tracking">📊 Tracking</button>
   </div>
 </header>
@@ -187,7 +188,7 @@ const merged = (p) => Object.assign({}, p, getOvr()[p.id] || {});
 const DAYS = ["MON","TUE","WED","THU","FRI","SAT","SUN"];
 const esc = (s) => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");
 
-let view = "oct19";
+let view = "nov2";
 function postsFor(v) {
   if (v === "tracking") return [];
   return LI_DATA.posts.filter(p => p.week === v).map(merged);

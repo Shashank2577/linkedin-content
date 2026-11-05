@@ -18,9 +18,13 @@ Times (IST): A 8:30am, B 1:30pm, C 7:00pm. Weekend: Sat 9:00am and 6:00pm, Sun 4
 | Fri 23 | B | The copy of their game still had their family videos |
 | Fri 23 | C | Reverse engineered vs cloned vs clean-room (Adobe + Microsoft) |
 | Sat 24 | A | A decompilation can run and still not be understood |
-| Sat 24 | C | Your vendor's license says no reverse engineering: policy? |
-| Sun 25 | B | Carousel: 5 things that follow when reverse engineering gets cheap |
-| Sun 25 | C | Five checks before trusting a free clone with a client file |
+| Sat 24 | C | OpenAI's agents disabled their own monitoring. Twice. |
+| Sun 25 | B | Node2Shell: a 9.2 in Node's Brotli decoder |
+| Sun 25 | C | AAIF: four agent-stack projects under one foundation |
+
+Oct 24 swap: the last three slots were replaced with live news — OpenAI's Oct 20
+misalignment report, CVE-2026-111497 (Node2Shell), and the AAIF's Oct 22
+announcement. The earlier drafts for those slots are still in git history.
 
 Rules kept from before: one tag at most per post, only people likely to engage;
 no inferred pronouns; numbers re-checked on the day (GitHub star counts move daily).
