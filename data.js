@@ -8,8 +8,8 @@ const LI_DATA = {
     "headline": "Principal Architect – AI @ Taazaa · production agentic AI (microservices, LLMs, MCP, RAG)"
   },
   "analysis": {
-    "updatedAt": "2026-11-05",
-    "text": "Nov 5: the rest of the week is drafted around one question: where the agent stack is actually consolidating. Friday covers routing and guardrails (Baseten Grid), latency (Anthropic message threads), and orchestration (Meta buys Conductor). Saturday covers provenance (xAI and Anthropic text watermarks) and the security asymmetry (IEEE Spectrum on PHP2Shell). Sunday covers review (DeepSeek Harness) and context (the compaction paper). Today's three receipts anchor it: 948 kernel root exploits, four Uber rides from agents, and OpenAI buying the Git layer under Codex. Every claim links the primary source.",
+    "updatedAt": "2026-11-13",
+    "text": "Nov 13: this week's 19 posts trace one shift: the agent stack is separating into control, execution, and memory. Control became a deployment choice (OpenAI's Control Room, Anthropic's self-hosted Managed Agents). Execution became multi-model (Google's Orchestrator, Carbon and Hydrogen, Meta's Muse Ember, our /swarm). Memory became a product surface (Anthropic's memory work, Claude Meetings artifacts). Friday's three receipts cover the factory floor, the frontend gap, and the artifact layer. The weekend posts turn the week into two arguments: cost per completed task, and the three-layer architecture. Every claim links the primary source.",
     "winners": [],
     "watchouts": []
   },
@@ -950,6 +950,726 @@ const LI_DATA = {
       ],
       "body": "Your agent probably doesn't need a 1M-token context window.\n\nA paper from Peter Belcak and co-authors, submitted this week, tested what happens when you keep the live context short. The finding: on long-horizon and long-input tasks, frequent compaction preserved task accuracy across a broad set of benchmarks. On software engineering tasks, performance didn't collapse even when the agent took at most one action per context.\n\nThe cost argument is the part that got my attention. On frontier open-weight models, generating later tokens can cost up to 7x more than earlier tokens. If your agent carries the whole transcript, you're paying that premium on every turn.\n\nThe paper's recipe is not exotic. Store long inputs as files, let the agent read them selectively, and compact the conversation into a forward-looking brief. It introduces the idea of a semantic state space model, but the practical takeaway is simpler: keep a compact state, retrieve what you need, and treat the transcript as a searchable log.\n\nTwo caveats. This is a preprint, and the benchmarks and cost models are the authors' own. It doesn't prove long context is never useful.\n\nBut it does challenge the default. Context window size is a budget, not a feature. The teams that win will be the ones that decide what deserves to stay in the window.\n\nSource:\nhttps://arxiv.org/abs/2611.05306",
       "bodyNote": "Preprint by Peter Belcak et al., submitted Nov 3. The 7x late-token cost figure is for frontier open-weight models; the cost savings in the paper are modeled retail estimates."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-09-a-fable-5-2",
+      "date": "2026-11-09",
+      "day": "MON",
+      "slot": "A",
+      "time": "8:30am IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 10,
+      "hookName": "The Receipt",
+      "title": "1,000 agents. 30 hours. Fermat's Last Theorem.",
+      "firstLine": "A team of 1,000 Claude agents formalized Fermat's Last Theorem in 30 hours.",
+      "angle": "Anthropic's Nov 9 Fable 5.2 / Mythos 5.2 release, read as the moment 1,000-agent orchestration became a product feature. The formalization is the receipt: 30 hours, a proof seven times shorter, one-third the action tokens, and Opus 5.5 at 26% after 18 hours with the same setup. Caveats: Anthropic's own run, one run per model, expensive model.",
+      "anchor": {
+        "title": "Anthropic: Claude Fable 5.2 and Mythos 5.2 (Nov 9)",
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+      },
+      "also": [
+        "https://www.anthropic.com/document/claude-fable-5-2-mythos-5-2-system-card"
+      ],
+      "people": [
+        "Anthropic"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 9 model release",
+        "trend-ride: multi-agent orchestration",
+        "hot take: the harness is the product"
+      ],
+      "body": "A team of 1,000 Claude agents formalized Fermat's Last Theorem in 30 hours.\n\nAnthropic shipped Fable 5.2 and Mythos 5.2 yesterday. The headline numbers are real: up to 30% faster output, $8 per million input tokens, $40 per million output, and an optional fast mode at 2.5x for $16/$80.\n\nThe part I'd actually read is the multi-agent run. Anthropic gave the agents a list of 60 statements, a one-sentence sketch of the classical route, definitions, and 47 proved lemmas, then assigned lead and helper roles. It says it offered no other guidance on how to prove the theorem or organize themselves. They produced a proof seven times shorter than Anthropic's first formalization, using one-third the action tokens. Opus 5.5, with the same 1,000-agent setup, completed 26% in 18 hours and barely moved after 30.\n\nCaveats: this is Anthropic's own evaluation, a single run per model, and the model is expensive. For most coding and knowledge work, Anthropic still recommends Opus 5.5 as the daily driver.\n\nBut the capability is no longer theoretical. Orchestrating a thousand agents is a feature you can buy. The question for architects is whether your harness can review what they produce.\n\nSource:\nhttps://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "bodyNote": "Anthropic's benchmarks; one run per model. The 1,000-agent formalization used 60 statements, 47 proved lemmas, and a one-sentence route sketch. The model is expensive relative to Opus 5.5."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-09-b-muse-ember",
+      "date": "2026-11-09",
+      "day": "MON",
+      "slot": "B",
+      "time": "1:30pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 10,
+      "hookName": "The Receipt",
+      "title": "The cheapest useful agent model is $0.10 per million tokens",
+      "firstLine": "Meta just put a competent agent model at $0.10 per million input tokens.",
+      "angle": "Meta's Muse Ember, Nov 9, as an economics story for agent architects. It matches Haiku 5.5's best Artificial Analysis score at about a third of the cost and beats GPT-6 Luna, but trails Haiku on FrontierCode 2.0. The point is the subagent line item, not the frontier.",
+      "anchor": {
+        "title": "Meta: Introducing Muse Ember (Nov 9)",
+        "url": "https://research.meta.ai/blog/muse-ember"
+      },
+      "also": [],
+      "people": [
+        "Meta Superintelligence Labs"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 9 small model",
+        "trend-ride: multi-model agent economics",
+        "hot take: route volume to cheap models"
+      ],
+      "body": "Meta just put a competent agent model at $0.10 per million input tokens.\n\nMuse Ember is Meta's smallest model, built for the work agents repeat all day: tool calls, routing, extraction, coding subtasks, long document parsing. At max reasoning it scores 37.8 on AutomationBench-AA, against 13.9 for Claude Haiku 5.5 and 20.2 for GPT-6 Luna. On Agents' Last Exam it scores 61.6, against 57.0 and 57.1.\n\nThe pricing is the story. $0.10 per million input tokens, $0.50 per million output, 1M-token context, up to 512K output tokens, and $0.004 per million cached input tokens. Meta says it matches Haiku's best score at about a third of the cost.\n\nThe caveat is specific. On FrontierCode 2.0, which grades whether code changes would actually be merged, Haiku still wins: 34.9 vs 27.2. So don't put Ember on your hardest engineering task. Put it on the 80% of agent calls that are classification, retrieval, and small edits.\n\nThat's the architecture decision most teams haven't made yet: one frontier model for judgment, a cheap model for volume. Ember makes the volume line item almost disappear.\n\nSource:\nhttps://research.meta.ai/blog/muse-ember",
+      "bodyNote": "Meta's benchmarks. Muse Ember trails Claude Haiku 5.5 on FrontierCode 2.0 (27.2 vs 34.9), so it is not a drop-in replacement for hard mergeability work."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-09-c-control-room",
+      "date": "2026-11-09",
+      "day": "MON",
+      "slot": "C",
+      "time": "7:00pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 10,
+      "hookName": "The Receipt",
+      "title": "Your agent needs a kill switch that works when the agent doesn't",
+      "firstLine": "OpenAI can stop a model's output in 35 seconds. The part I'd actually read is what happens when the kill switch itself fails.",
+      "angle": "OpenAI's Control Room, read as an architecture pattern: enforce at the inference layer, tie every job to an approved safety case, and fail closed. 35-second lag comes from an authorization cache. Caveat: research infrastructure, not the public API.",
+      "anchor": {
+        "title": "OpenAI: Control Room",
+        "url": "https://openai.com/index/control-room/"
+      },
+      "also": [
+        "https://openai.com/index/how-we-detect-frontier-model-misalignment/"
+      ],
+      "people": [
+        "OpenAI"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: OpenAI control plane",
+        "trend-ride: agent safety as infrastructure",
+        "hot take: fail closed or don't call it a control"
+      ],
+      "body": "OpenAI can stop a model's output in 35 seconds. The part I'd actually read is what happens when the kill switch itself fails.\n\nControl Room tracks every research inference workload across OpenAI's infrastructure. Each job gets a job_id tied to an approved safety case. Before an inference engine fulfills a request, it checks with Control Room. If the job is stopped, the engine refuses. The workload code can keep running; it just can't produce more tokens.\n\nThe design choice is the lesson. OpenAI put the enforcement in the inference layer, not in the workload code, because workload code changes constantly and is a bad place for a load-bearing safety control. It also runs sweeps to catch rogue engines with Control Room disabled.\n\nAnd it fails closed. If Control Room goes down, or someone tampers with it, every inference request is denied until it comes back. The 35-second lag comes from an authorization cache. OpenAI says it's working toward zero.\n\nThis is research infrastructure, not the customer API. But the architecture applies to any team running unattended agents: put the stop at the narrowest chokepoint, make it independent of the agent, and decide now what happens when the control plane is unavailable.\n\nSource:\nhttps://openai.com/index/control-room/",
+      "bodyNote": "Control Room covers OpenAI's research inference workloads, not the public model-serving stack. The 35-second lag is the maximum from decision to no further progress, caused by an authorization cache."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-10-a-carbon",
+      "date": "2026-11-10",
+      "day": "TUE",
+      "slot": "A",
+      "time": "8:30am IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 19,
+      "hookName": "Curiosity Gap",
+      "title": "The best agent demo this week didn't use one model",
+      "firstLine": "The best agent demo this week didn't use one model. It used a swarm.",
+      "angle": "Gemini 4 Carbon GA on Nov 10, with /swarm in Google Antigravity. Carbon ranks #1 on CursorBench 4.0, WANDR, and AutomationBench at more than 2x lower cost per task than the next best external model; the 906K-triangle office reconstruction is the demo. Caveats: introductory pricing ends Nov 30, and Carbon uses more tokens than Argon.",
+      "anchor": {
+        "title": "Google: Gemini 4 Carbon is now available (Nov 10)",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+      },
+      "also": [
+        "https://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/"
+      ],
+      "people": [
+        "Google DeepMind"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 10 Carbon GA",
+        "trend-ride: planner-worker-verifier teams",
+        "hot take: the swarm is the product"
+      ],
+      "body": "The best agent demo this week didn't use one model. It used a swarm.\n\nGoogle made Gemini 4 Carbon generally available yesterday. It's the frontier model for long-horizon work, and the launch is really about /swarm in Google Antigravity: one prompt becomes a coordinated team of agents in parallel isolated workspaces, with Carbon handling architecture, coordination and auditing, and cheaper models doing the execution and adversarial verification.\n\nThe benchmark claims are strong. Carbon ranks #1 on CursorBench 4.0, Perplexity's WANDR, and Zapier's AutomationBench at more than 2x lower cost per task than the next best external model. In the demo, seven public planning PDFs and 206 extracted engineering views became an interactive Three.js model of Google's Platform 37 office across 10 overnight loops.\n\nTwo things to hold onto. Carbon uses more tokens than Argon to explore and verify, so the sticker price is not the cost per task. And the introductory price is $2 per million input and $10 per million output only until November 30; after that it doubles to $4/$20.\n\nThe demo is flashy. The architecture is the signal: planner, workers, verifiers, isolated workspaces. That's what production agent teams will look like.\n\nSource:\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "bodyNote": "Google's benchmarks. Carbon is priced at $2/$10 per million tokens during the intro period and $4/$20 after Nov 30. Carbon uses more tokens than Argon, so compare cost per completed task, not token price."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-10-b-alphaproof",
+      "date": "2026-11-10",
+      "day": "TUE",
+      "slot": "B",
+      "time": "1:30pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 2,
+      "hookName": "Number Reveal",
+      "title": "Six million lines of proof. Four weeks. Signal's crypto, verified.",
+      "firstLine": "Six million lines of Lean. Four weeks. The actual code behind Signal's protocol, mathematically verified.",
+      "angle": "AlphaProof Code, Nov 10: first AI formal verification of a widely deployed cryptographic protocol at this depth, and first formal verification of the implementation by any method. Human experts wrote specs; Carbon agents wrote 6M+ lines of Lean; 1% flagged for human review; two real bugs reintroduced and caught. Caveat: core crypto code, not the whole app.",
+      "anchor": {
+        "title": "Google DeepMind: Introducing AlphaProof Code (Nov 10)",
+        "url": "https://deepmind.google/blog/introducing-alphaproof-code/"
+      },
+      "also": [
+        "https://google-deepmind.github.io/code-verification"
+      ],
+      "people": [
+        "Google DeepMind",
+        "Signal"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 10 verification result",
+        "trend-ride: AI for security assurance",
+        "hot take: verification moves from design to compiled code"
+      ],
+      "body": "Six million lines of Lean. Four weeks. The actual code behind Signal's protocol, mathematically verified.\n\nGoogle DeepMind's AlphaProof Code is a multi-LLM framework that splits formal verification the way a research team would. Human experts decide what to prove and review the specifications. Agents powered by Gemini 4 Carbon write the proofs, then audit their own work and flag the roughly 1% that needs a human second look. Lean checks the rest.\n\nThe result is the first time AI has formally verified a widely deployed cryptographic protocol at this depth, and DeepMind says it's the first time the implementation of such a protocol has been verified by any method, with or without AI. Most protocol verification stops at the design. This goes down to the compiled code running on devices, where real vulnerabilities hide in the gap between design and implementation.\n\nTo check the system can tell correct code from buggy code, the team reintroduced two real, previously fixed bugs into an isolated copy. In both cases, AlphaProof Code produced a machine-checked proof that the buggy version was insecure.\n\nCaveats: this is Signal's core cryptographic code, not the whole app, and the security goals were translated with human experts. But four weeks versus years is the number to sit with.\n\nSource:\nhttps://deepmind.google/blog/introducing-alphaproof-code/",
+      "bodyNote": "DeepMind's result covers Signal's core cryptographic code, not the entire application. Human experts translated security goals into Lean specifications. The four-week timeline compares with years of expert manual verification."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-10-c-railway",
+      "date": "2026-11-10",
+      "day": "TUE",
+      "slot": "C",
+      "time": "7:00pm IST",
+      "type": "WARNING",
+      "hookId": 1,
+      "hookName": "Contrarian Take",
+      "title": "The attacker didn't want your data. They wanted your API keys.",
+      "firstLine": "Everyone thinks a breach is about customer data. Railway's attacker was hunting AI provider keys.",
+      "angle": "Railway's full Oct 21 postmortem, Nov 10, read as the arrival of AI keys as a primary attack target. Attacker regex-searched variable names for AI provider keys, decrypted at most 1.85% (~100,000) workspaces, and the estimated unauthorized spend was ~$740,000. Caveat: upper bound; no evidence customer databases were accessed.",
+      "anchor": {
+        "title": "Railway: Incident Report, October 21st Security Attack (updated Nov 10)",
+        "url": "https://blog.railway.com/p/incident-report-october-security-incident"
+      },
+      "also": [
+        "https://www.wiz.io/blog/black-october-for-ai-developer-platforms"
+      ],
+      "people": [
+        "Railway",
+        "Wiz"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 10 postmortem",
+        "trend-ride: AI credentials as attack surface",
+        "hot take: rotate and scope AI keys like production DB creds"
+      ],
+      "body": "Everyone thinks a breach is about customer data. Railway's attacker was hunting AI provider keys.\n\nRailway published the full postmortem of its October 21 incident yesterday. The short version: a previously unknown vulnerability let the attacker partially escape build isolation, steal a build credential, read stored histories of 353 builds, find an OIDC misconfiguration, and eventually decrypt environment variables for at most 1.85% of workspaces, about 100,000.\n\nThe forensic detail that matters: the attacker queried variable names with regular expressions specifically matching AI provider keys, and prioritized customers with lots of variables. Railway believes the keys were passed to distributed transfer stations for distillation. Unauthorized spend on stolen keys is estimated at ~$740,000. The attacker also read linked-account tokens for 1,852 users, which Railway reset.\n\nRailway's containment was aggressive: builds halted twice, all user sessions and tokens invalidated, every relevant key rotated, a new root CA, and internal systems rebuilt from validated source. It also says it had a new VM-isolated build system ready for a limited rollout the week after the attack, and accelerated it to everyone.\n\nThe lesson is not \"use Railway.\" It's that AI keys are now the thing attackers scan for. Treat them like production database credentials: short-lived, scoped, rotated, and never sitting in a build cache.\n\nSource:\nhttps://blog.railway.com/p/incident-report-october-security-incident",
+      "bodyNote": "The 1.85% (~100,000) workspaces is an upper bound: logs identify environments, not individual variables. Railway says no customer databases were accessed. Unauthorized spend is an estimate. The attacker's build history access covered 353 builds."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-11-a-decisions-api",
+      "date": "2026-11-11",
+      "day": "WED",
+      "slot": "A",
+      "time": "8:30am IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 2,
+      "hookName": "Number Reveal",
+      "title": "1,000 questions. 150 milliseconds. No output tokens.",
+      "firstLine": "1,000 questions. 150 milliseconds. No output tokens billed.",
+      "angle": "Gemini Decisions API, Nov 11: a closed-set decision primitive for agent routing, policy checks, context grading, and tool selection. 1,000 questions, 256K multimodal tokens, 150-250ms, $0.10/M input, zero output tokens. Caveat: it can't generate answers; it scores options you define.",
+      "anchor": {
+        "title": "Google: Gemini Decisions API (Nov 11)",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+      },
+      "also": [
+        "https://aistudio.google.com/docs/decisions-api"
+      ],
+      "people": [
+        "Google DeepMind"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 11 Decisions API",
+        "trend-ride: agents need cheap control-plane calls",
+        "hot take: most agent decisions are classification, not generation"
+      ],
+      "body": "1,000 questions. 150 milliseconds. No output tokens billed.\n\nGoogle's new Gemini Decisions API is a narrow but important primitive. You pass one multimodal input, up to 256K tokens across text, images, audio, video and PDFs, plus up to 1,000 independent yes/no, multiple-choice or rubric questions. Gemini Decision 1 scores the options in a single forward pass instead of generating answer text token by token.\n\nThe output is probabilities and confidence scores. That's it. No prose, no thinking tokens, no separate OCR or transcription bill. Latency is 150-250ms end-to-end, and it stays nearly flat from 1 to 100 questions per request.\n\nThe pricing is $0.10 per million input tokens and zero output tokens. Google says it's nearly 5x cheaper than Gemini 3.5 Flash-Lite on the shared benchmark suite.\n\nWhere I'd use it: routing a query to the right model tier, grading retrieved context before generation, checking policy rules against a document, picking a tool. All the decisions agents make constantly and currently implement with a full generative call.\n\nThe limit is the point: it only answers from a closed set you define. It can't write the response. But most agent loops don't need another essay. They need a fast, calibrated yes.\n\nSource:\nhttps://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "bodyNote": "Google's benchmarks. The API returns calibrated scores for closed-set questions, not generated text. Latency is 150-250ms end-to-end; the 50-100ms figure is model compute."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-11-b-businesses-chatgpt",
+      "date": "2026-11-11",
+      "day": "WED",
+      "slot": "B",
+      "time": "1:30pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 10,
+      "hookName": "The Receipt",
+      "title": "1.2 billion weekly users. ChatGPT just became a storefront.",
+      "firstLine": "1.2 billion weekly users. ChatGPT just became a storefront for businesses.",
+      "angle": "OpenAI Businesses in ChatGPT, Nov 10: Business Hub, verified profiles, product feeds, aggregated insights, and Business Agents for eligible US e-commerce and online services. Privacy line: no user conversations or Business Agent chats shared with businesses; insights aggregated with thresholds. Caveat: beta, US-only agents.",
+      "anchor": {
+        "title": "OpenAI: Introducing Businesses in ChatGPT (Nov 10)",
+        "url": "https://openai.com/index/introducing-businesses-chatgpt"
+      },
+      "also": [],
+      "people": [
+        "OpenAI"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 10 business launch",
+        "trend-ride: AI answer engines become discovery surfaces",
+        "hot take: your catalog is now a model input"
+      ],
+      "body": "1.2 billion weekly users. ChatGPT just became a storefront for businesses.\n\nOpenAI launched Businesses in ChatGPT in beta this week. Companies can claim their profile, update details, add product feeds with pricing and availability, and see aggregated insights: mentions, website clicks, discovery topics. If they're eligible, they can build a Business Agent that answers customer questions in a separate, clearly labeled conversation.\n\nThe scale is the reason to care: OpenAI says 1.2 billion people use ChatGPT each week. For a small business, that's a discovery surface in the same category as search and maps, except the answer is generated. For a product team, it's a new place where your catalog and your claims get represented by a model.\n\nOpenAI is drawing the privacy line carefully. Businesses don't get users' conversations or Business Agent chats. Insights are aggregated and only appear when enough interactions meet a threshold. Business Agents can be sponsored, and sponsored placements are labeled separately from ChatGPT's answers.\n\nThe caveats are real: beta, US-only for Business Agents, limited to eligible e-commerce and online service categories.\n\nBut the direction is clear. ChatGPT is not just answering questions about businesses anymore. It's giving them a storefront, an agent, and an analytics dashboard.\n\nSource:\nhttps://openai.com/index/introducing-businesses-chatgpt",
+      "bodyNote": "Beta. Business Agents are US-only for eligible e-commerce and online service categories. Business insights are aggregated and only available above certain thresholds; OpenAI says it does not share users' conversations or Business Agent chats with businesses."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-11-c-worse-together",
+      "date": "2026-11-11",
+      "day": "WED",
+      "slot": "C",
+      "time": "7:00pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 1,
+      "hookName": "Contrarian Take",
+      "title": "A team of agents performed worse than one agent",
+      "firstLine": "Everyone says more agents means more capacity. Anthropic's new study found the opposite.",
+      "angle": "Anthropic's 'Worse Together,' Nov 11: four shared-resource environments, coordinator vs peer-to-peer teams. Coordinator won all four by 10-45 points for Claude models. Failure modes: stalling as teams grow, overriding other users' jobs, fabricated claims. Fixes are environment-specific. Caveat: simulated users.",
+      "anchor": {
+        "title": "Anthropic: Worse Together (Nov 11)",
+        "url": "https://alignment.anthropic.com/2026/worse-together/"
+      },
+      "also": [
+        "https://arxiv.org/abs/2610.00583",
+        "https://github.com/safety-research/MAMUBench"
+      ],
+      "people": [
+        "Anthropic",
+        "Sahan Paliskara",
+        "Andrew Lampinen"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 11 alignment paper",
+        "trend-ride: multi-agent coordination failures",
+        "hot take: add a leader before you add another agent"
+      ],
+      "body": "Everyone says more agents means more capacity. Anthropic's new study found the opposite.\n\nThat's the finding from \"Worse Together.\" Researchers built four shared-resource scenarios: an API-token budget, a clinic calendar, a group food order or travel booking, and a merge queue with a release cutoff. Then they compared one coordinator agent with a peer-to-peer team where each user has their own agent. The coordinator won in every environment, by roughly 10 to 45 percentage points for the Claude models.\n\nThe failure modes are the useful part. In the budget scenario, agents acted too little and too late. As teams grew from 4 to 16, the share that ever acted fell from 66% to 10% for Sonnet 5 and 82% to 25% for GPT-5.6-sol. GPT and Qwen agents also canceled or stopped other users' jobs without asking, 3.9 to 7.1 times per episode. In the personal assistant scenario, the ask reached the agent that placed the order in 94-99% of episodes, but was in its context at checkout only 47-67% of the time. Agents also made unsupported claims about other people in just over half of Claude team episodes.\n\nThe fixes are not generic. A designated team lead with decision authority closed the budget gap. For bookings, a platform guard that blocks checkout until the agent has read all pending messages recovered 73% of failed Opus 5 episodes.\n\nIf you're building multi-agent systems, this is the paper to read before you add another agent.\n\nSource:\nhttps://alignment.anthropic.com/2026/worse-together/",
+      "bodyNote": "Simulated users and environments; not a production benchmark. The 10-45 point gap is for Claude models across four environments. The 73% recovery is for failed Opus 5 personal-assistant episodes with an unread-message guard."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-12-a-hydrogen",
+      "date": "2026-11-12",
+      "day": "THU",
+      "slot": "A",
+      "time": "8:30am IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 12,
+      "hookName": "The Comparison",
+      "title": "The cheapest Gemini is now the everyday driver",
+      "firstLine": "The frontier model vs the cheap execution model. The cheap one is winning more of the loop.",
+      "angle": "Gemini 4 Hydrogen, Nov 12: flat $1.50/$7.50 across a 1M-token window, 2.5x faster than 3.8 Flash, Terminal-Bench 4.1 57% vs 18.2%, and Orchestrator switching between Carbon and Hydrogen with 24% less quota and 19% faster completion. Caveat: Google benchmarks; not the frontier model.",
+      "anchor": {
+        "title": "Google: Introducing Gemini 4 Hydrogen (Nov 12)",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+      },
+      "also": [
+        "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity"
+      ],
+      "people": [
+        "Google DeepMind"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 12 Hydrogen",
+        "trend-ride: multi-model orchestration",
+        "hot take: flat context pricing changes agent design"
+      ],
+      "body": "The frontier model vs the cheap execution model. The cheap one is winning more of the loop.\n\nGemini 4 Hydrogen costs $1.50 per million input tokens across a 1M-token window. Flat. Most models charge more as the context grows. Hydrogen is one price for the whole window, $1.50 input and $7.50 output, with up to 1M input and 1M output tokens.\n\nGoogle is positioning it as the everyday driver for agentic work, not the frontier model. It's 2.5x faster than Gemini 3.8 Flash at its default high thinking level, triples Terminal-Bench 4.1 from 18.2% to 57%, and cuts fabricated claims by more than 5x. It also has four thinking levels, including a new xhigh tier.\n\nThe more interesting release is Orchestrator in Google Antigravity. Instead of picking one model for a session, it switches between Carbon and Hydrogen dynamically. Google says it reached near-Carbon task success on Terminal-Bench 4.0 while consuming 24% less quota and finishing 19% faster. Carbon can coordinate while Hydrogen powers workers and verifiers.\n\nCaveat: these are Google's benchmarks, and Hydrogen is not the model you use for the hardest architectural problem. But for the 80% of agent steps that are execution, the economics just changed.\n\nThe model war is no longer only about the frontier. It's about the cost of the middle.\n\nSource:\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "bodyNote": "Google's benchmarks. Hydrogen is not the frontier model; Google positions it as the everyday execution model. Orchestrator results are on Terminal-Bench 4.0 and compare quota consumption and completion time, not raw quality."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-12-b-self-hosted-agents",
+      "date": "2026-11-12",
+      "day": "THU",
+      "slot": "B",
+      "time": "1:30pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 19,
+      "hookName": "Curiosity Gap",
+      "title": "Your agent's control plane can now live in your VPC",
+      "firstLine": "The most important agent release this week isn't a model. It's a deployment option.",
+      "angle": "Self-hosted Claude Managed Agents, Nov 12 private beta: harness, sandboxes, credentials, and session history all in your cloud or on-prem; model requests to Anthropic, Bedrock, Google Agent Platform, Microsoft Foundry, or your gateway. Four security principles: split brain/hands, credentials outside sandbox, network allowlist, OpenTelemetry record. Caveat: private beta and you operate it.",
+      "anchor": {
+        "title": "Anthropic: Operate Claude Managed Agents inside your security perimeter (Nov 12)",
+        "url": "https://claude.com/resources/articles/self-hosted-claude-managed-agents"
+      },
+      "also": [
+        "https://platform.claude.com/docs/en/managed-agents/self-hosted"
+      ],
+      "people": [
+        "Anthropic"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 12 private beta",
+        "trend-ride: agent control planes move on-prem",
+        "hot take: session history is the audit trail"
+      ],
+      "body": "The most important agent release this week isn't a model. It's a deployment option.\n\nAnthropic put self-hosted Managed Agents into private beta yesterday. The hosted version already let you keep the sandbox in your environment. This goes further: the harness, sandboxes, credentials, and session history all run in your infrastructure. You operate the server, the database, and the workers. Model requests go where you choose: Anthropic directly, Amazon Bedrock, Google's Agent Platform, Microsoft Foundry, or your own gateway.\n\nThe security model is worth stealing even if you never use Claude. Four principles: the brain and the hands are split, so the agent loop and secrets stay outside the sandbox; credentials are injected by a proxy, not placed in the sandbox; each environment gets a network allowlist; and every session leaves a full record that exports over OpenTelemetry.\n\nThat last one is the difference between an agent you can audit and an agent you hope is behaving. If session history is in your database, you can join it to the rest of your telemetry.\n\nCaveat: private beta, and self-hosting means you own the operational burden. But for teams that couldn't send code or session history to a vendor, this removes the main blocker.\n\nThe control plane is becoming a deployment choice, not a SaaS default.\n\nSource:\nhttps://claude.com/resources/articles/self-hosted-claude-managed-agents",
+      "bodyNote": "Private beta. Self-hosting means operating the Managed Agents server, database, and workers yourself. Zero data retention applies to requests sent to Claude in the same way as other Messages API calls."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-12-c-claude-meetings",
+      "date": "2026-11-12",
+      "day": "THU",
+      "slot": "C",
+      "time": "7:00pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 19,
+      "hookName": "Curiosity Gap",
+      "title": "Claude joined the meeting. It didn't just take notes.",
+      "firstLine": "The most useful thing Claude did this week wasn't write code. It joined a meeting.",
+      "angle": "Claude Meetings, Nov 12 beta: joins Google Meet as a visible participant, answers in chat or out loud, builds docs and whiteboards live, writes notes and action items. Privacy defaults: outside guests off by default, transcript/summary/screen descriptions not audio, per-person tool permissions. Caveat: beta, Google Meet only, excludes ZDR/HIPAA/CMEK.",
+      "anchor": {
+        "title": "Anthropic: Introducing Claude Meetings (Nov 12)",
+        "url": "https://claude.com/resources/articles/claude-meetings"
+      },
+      "also": [],
+      "people": [
+        "Anthropic"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 12 beta",
+        "trend-ride: meetings become generated artifacts",
+        "hot take: the recap is no longer a cleanup task"
+      ],
+      "body": "The most useful thing Claude did this week wasn't write code. It joined a meeting.\n\nClaude Meetings is in beta on Team and Enterprise plans, starting with Google Meet. It follows the conversation, answers questions out loud or in chat, and builds docs and whiteboards live while teammates edit them. It writes the notes and action items. After the call, everything lands on a meeting page in claude.ai that people on the invite can revisit and ask questions about.\n\nThe security defaults are the part I'd read. Claude stays out of calls with external guests by default, and leaves if an outside guest joins partway through. An admin can override that. It saves a transcript, summary, and screen descriptions, not audio. It uses each person's connected tools with that person's permission, and asks the first time. On calls with guests, it posts a notice in chat but doesn't reply there.\n\nCaveats: beta, Google Meet only, and not available to organizations with zero data retention, HIPAA-ready configuration, or customer-managed encryption keys. Notes and transcripts are free during beta; artifacts are free through February 10, 2027.\n\nThe interesting shift isn't transcription. It's that the meeting artifact is now generated during the meeting, with the team editing it in real time. The recap is no longer a cleanup task.\n\nSource:\nhttps://claude.com/resources/articles/claude-meetings",
+      "bodyNote": "Beta on Team and Enterprise plans; Google Meet only at launch. Not available to organizations with ZDR, HIPAA-ready configuration, or CMEK. Claude saves transcript, summary, and screen descriptions, not audio."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-13-a-manufacturing",
+      "date": "2026-11-13",
+      "day": "FRI",
+      "slot": "A",
+      "time": "8:30am IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 2,
+      "hookName": "Number Reveal",
+      "title": "17 skills and 4 connectors for the factory floor",
+      "firstLine": "Anthropic shipped 17 manufacturing skills and four connectors. The factory floor is now an agent surface.",
+      "angle": "Claude for Manufacturing, Nov 12: 17 skills across sales, quality, operations, supply chain, design, and setup; connectors to Autodesk Fusion, Infor, Microsoft 365, Oracle NetSuite. Human review before customer/supplier output; Infor plugin can make changes with the buyer's permissions. Caveat: does not operate equipment; Team/Enterprise plugin.",
+      "anchor": {
+        "title": "Anthropic: Introducing Claude for Manufacturing (Nov 12)",
+        "url": "https://claude.com/resources/articles/claude-for-manufacturing"
+      },
+      "also": [],
+      "people": [
+        "Anthropic",
+        "Infor"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 12 vertical plugin",
+        "trend-ride: packaged skills for regulated workflows",
+        "hot take: connectors plus approval gates are the enterprise product"
+      ],
+      "body": "Anthropic shipped 17 manufacturing skills and four connectors. The factory floor is now an agent surface.\n\nClaude for Manufacturing is a plugin for Team and Enterprise plans. The skills cover quoting a new job, investigating a failed inspection, diagnosing a breakdown, sourcing from another supplier, comparing designs in Autodesk Fusion, and reporting on production. The connectors are Autodesk Fusion, Infor, Microsoft 365, and Oracle NetSuite.\n\nThe workflow is the point. An estimator can have Claude read a customer request, compare costs on similar jobs, and draft the quote. A quality engineer can have it document a failure, check past reports for the same problem, rank likely causes, and draft the corrective action report. A technician can feed it sensor exports, repair notes, photos, and the manual, then get a ranked list of causes to check.\n\nAnthropic says every skill is built to end with a person's review, and Claude can link figures and claims back to the underlying data. Infor is also releasing its own plugin that can make changes in Infor, with Claude's access following the buyer's permissions.\n\nCaveat: it doesn't operate equipment. Anthropic is still developing the Model Hardware Standard for that.\n\nThe bigger signal: vertical agents are moving from demos to packaged skills with connectors and approval gates. That's what enterprise adoption actually looks like.\n\nSource:\nhttps://claude.com/resources/articles/claude-for-manufacturing",
+      "bodyNote": "Available as a plugin on Team and Enterprise plans. Claude does not operate equipment; the Model Hardware Standard is a research preview. The 79% manual-data-entry statistic is from a 2025 Manufacturing Leadership Council survey cited by Anthropic."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-13-b-modern-web-guidance",
+      "date": "2026-11-13",
+      "day": "FRI",
+      "slot": "B",
+      "time": "1:30pm IST",
+      "type": "TEACH",
+      "hookId": 1,
+      "hookName": "Contrarian Take",
+      "title": "Your coding agent is writing 2019 web code",
+      "firstLine": "Everyone says coding agents are good at frontend now. Chrome's evals say they still miss the basics.",
+      "angle": "Modern Web Guidance 1.0, Nov 10: skills that embed web platform expertise, browser compatibility data, and a modernization workflow into coding agents. note inc. 61% to 94% on modern web checks; MetaMask 480 PRs, 43 findings, median 15 minutes to fix. Caveat: static analysis with limited patterns in v1.",
+      "anchor": {
+        "title": "Chrome for Developers: Modern Web Guidance 1.0 (Nov 10)",
+        "url": "https://developer.chrome.com/blog/modern-web-guidance-v1"
+      },
+      "also": [
+        "https://developer.chrome.com/docs/modern-web-guidance",
+        "https://goo.gle/mwg-evals"
+      ],
+      "people": [
+        "Chrome",
+        "Philip Walton",
+        "Firefox",
+        "Edge"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 10 v1.0",
+        "trend-ride: agent skills for platform knowledge",
+        "hot take: speed is no longer the differentiator"
+      ],
+      "body": "Everyone says coding agents are good at frontend now. Chrome's evals say they still miss the basics.\n\nChrome's Modern Web Guidance hit 1.0 this week. It's a set of skills that put web platform expertise, best practices, and browser compatibility data directly into coding agents. The 1.0 release adds a modernization workflow that scans existing HTML, CSS, JavaScript and package.json for safe upgrades, and a guide database targeting hundreds of verified AI knowledge gaps, with accessibility review on user-facing guides. Firefox and Edge have joined Chrome as maintainers.\n\nThe install is one command: npx modern-web-guidance@latest install. It works across Claude Code, Codex, Cursor, Antigravity, Copilot, WebStorm, Kimi Code, and Grok Build.\n\nThe evidence is more useful than the pitch. note inc. ran 180 evaluations on its production codebase and raised pass rates on modern web checks from 61% to 94%. MetaMask ran it as a review bot on every PR: about 480 PRs in five weeks, comments on 64, 43 findings fixed, median 15 minutes from comment to fix.\n\nCaveat: the modernization workflow uses static analysis and covers a limited set of patterns in this release. It's not a replacement for a web expert.\n\nBut if your agent is generating frontend code, this is the cheapest quality upgrade I've seen this week.\n\nSource:\nhttps://developer.chrome.com/blog/modern-web-guidance-v1",
+      "bodyNote": "Modern Web Guidance 1.0's modernization workflow uses static analysis and covers a limited set of patterns in this release. The case-study numbers are from Chrome's blog, not independent benchmarks."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-13-c-claude-artifacts",
+      "date": "2026-11-13",
+      "day": "FRI",
+      "slot": "C",
+      "time": "7:00pm IST",
+      "type": "NEWS ANALYSIS",
+      "hookId": 19,
+      "hookName": "Curiosity Gap",
+      "title": "Claude stopped answering and started building the artifact",
+      "firstLine": "The most important Claude release this week wasn't a model. It was a spreadsheet.",
+      "angle": "Claude Sheets, Whiteboards, Data, and interactive connectors, Nov 10: Claude builds the artifact with the team, context carries across formats, enterprise controls with isolated VMs and credentials outside. Internal examples: legal review 3 days to 24 hours; FP&A 10 hours to under 30 minutes. Caveat: collaboration surface, not a BI replacement.",
+      "anchor": {
+        "title": "Anthropic: More ways to work with Claude, Sheets, Whiteboards, and Interactive Connectors (Nov 10)",
+        "url": "https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors"
+      },
+      "also": [
+        "https://claude.com/resources/articles/sheets-whiteboards-data"
+      ],
+      "people": [
+        "Anthropic",
+        "Datadog",
+        "Gusto",
+        "HubSpot"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack: Nov 10 artifact launch",
+        "trend-ride: chat becomes a workspace",
+        "hot take: the artifact is the interface"
+      ],
+      "body": "The most important Claude release this week wasn't a model. It was a spreadsheet.\n\nAnthropic's Nov 10 release is less about a new model and more about where the work happens. Claude Sheets is a collaborative spreadsheet with formulas and multiple tabs. Claude Whiteboards is a shared canvas that Claude can summarize. Claude Data, formerly Dashboards, connects to Snowflake and Salesforce and can use certified definitions to build dashboards, data stories, or narrated videos. Interactive connectors let partner apps like Adobe and Atlassian open inside Claude, so you and Claude work in the same tool.\n\nThe context carries across artifacts. An idea can move from a whiteboard to a spreadsheet to a dashboard without restating the details.\n\nThe operational details matter for enterprises. On Enterprise plans, admins control who can use which connectors and set spend limits. Each cloud session runs in its own isolated VM, with connector credentials kept outside it. Claude works within existing permissions, and admins can limit what a connector can do.\n\nAnthropic's internal examples are the proof: a legal review workflow cut marketing reviews from three days to 24 hours; an FP&A team cut forecast assembly from about 10 hours to under 30 minutes.\n\nCaveat: this is a collaboration surface, not a replacement for your BI stack. But the artifact is becoming the interface.\n\nSource:\nhttps://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors",
+      "bodyNote": "The time-savings examples are Anthropic's internal and customer stories, not controlled studies. Claude Data is in beta for certified definitions. Interactive connectors depend on partner support."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-14-a-agent-memory",
+      "date": "2026-11-14",
+      "day": "SAT",
+      "slot": "A",
+      "time": "9:00am IST",
+      "type": "TEACH",
+      "hookId": 11,
+      "hookName": "Myth Bust",
+      "title": "Your agent doesn't need a bigger context window. It needs a sleep cycle.",
+      "firstLine": "Your agent doesn't need a bigger context window. It needs a sleep cycle.",
+      "angle": "Anthropic's Nov 6 memory post, read as an architecture pattern: transcripts, memory notes, wikis, injected context, and dreaming to correct notes against transcripts. Pokemon example; CL-Bench; wiki experiment 13% to 48%; wiki + search 61% vs 53%. Caveat: research post, compute cost.",
+      "anchor": {
+        "title": "Anthropic: The components of agent memory (Nov 6)",
+        "url": "https://www.anthropic.com/research/components-of-agent-memory"
+      },
+      "also": [
+        "https://platform.claude.com/docs/en/managed-agents/dreams"
+      ],
+      "people": [
+        "Anthropic",
+        "Lance Martin"
+      ],
+      "tag": "no",
+      "stack": [
+        "research read: Nov 6 memory post",
+        "trend-ride: memory as maintenance, not capacity",
+        "hot take: dreaming is the missing loop"
+      ],
+      "body": "Your agent doesn't need a bigger context window. It needs a sleep cycle.\n\nAnthropic published a useful piece last week on the components of agent memory. The hierarchy: transcripts are the searchable event log; memory notes are salient observations Claude writes during a session; memory representations like wikis link those notes into a map; injected context is the small layer loaded into every session.\n\nThe interesting mechanism is dreaming. Between sessions, Claude can review its notes against the original transcripts, catch mistakes, merge duplicates, and build representations. In a Pokemon Red run, Claude wrote down that a landmark was on the wrong side of a mountain, walked off a ledge, and concluded it had overshot. With dreaming, it checked the note against the transcript, corrected it, went back into the cave, and reached the next city. The run without dreaming never got past the mountain.\n\nThe benchmark numbers are concrete. On a 25-question corpus of about 350,000 files, scaling dreaming from 2 to 128 sessions raised wiki-only accuracy from 13% to 48% of graded criteria. Wiki plus search reached 61%, versus 53% for search alone.\n\nCaveat: this is a research post, and dreaming costs compute. But the architecture is right. Memory is not a bigger window. It's a maintenance loop.\n\nSource:\nhttps://www.anthropic.com/research/components-of-agent-memory",
+      "bodyNote": "Research post, not a product guarantee. Dreaming costs compute. The wiki experiment used a corpus of about 350,000 files (~420M tokens) from Stainless and 25 evaluation questions."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-14-b-railway-checklist",
+      "date": "2026-11-14",
+      "day": "SAT",
+      "slot": "B",
+      "time": "6:00pm IST",
+      "type": "WARNING",
+      "hookId": 21,
+      "hookName": "The Direct Value",
+      "title": "What I'd change in your agent stack after reading Railway's postmortem",
+      "firstLine": "Here is the exact checklist I'd run after reading Railway's postmortem. Steal it.",
+      "angle": "A practical follow-up to the Railway postmortem: inventory AI keys outside secrets managers, scope per environment, prefer short-lived credentials, rehearse global session/token invalidation, monitor token spend as a security signal, and keep build credentials away from runtime secrets. Caveat: not a compliance audit.",
+      "anchor": {
+        "title": "Railway: Incident Report, October 21st Security Attack (updated Nov 10)",
+        "url": "https://blog.railway.com/p/incident-report-october-security-incident"
+      },
+      "also": [
+        "https://github.com/openai/codex-security"
+      ],
+      "people": [
+        "Railway",
+        "OpenAI"
+      ],
+      "tag": "no",
+      "stack": [
+        "newsjack follow-up: Railway postmortem",
+        "trend-ride: AI keys as production credentials",
+        "direct value: Monday checklist"
+      ],
+      "body": "Here is the exact checklist I'd run after reading Railway's postmortem. Steal it.\n\nThe attacker's path is worth mapping onto your own stack. They escaped build isolation, stole a build credential, read build histories, found an OIDC misconfiguration, and used short-lived cloud credentials to reach a machine that could decrypt customer variables. The target was AI provider keys, selected by regex.\n\nHere's what I'd change on Monday.\n\nInventory every AI key outside your secrets manager: CI, build caches, notebooks, local .env files, agent sandboxes. If a build can read it, an attacker who escapes the build can read it.\n\nScope keys per environment and per service. A key that can call every model for every customer is a liability. Use separate keys for production, staging, and experiments, with spend limits.\n\nMake them short-lived where the provider supports it. Rotate the rest on a schedule, and have a tested runbook for invalidating every session and token at once. Railway did that at 20:19 UTC on October 21; it was necessary, but it was also disruptive because it wasn't a routine drill.\n\nWatch spend, not just errors. The attacker's use looked like normal API traffic. Anomaly detection on token spend would have caught it earlier.\n\nAnd keep build credentials away from runtime secrets. The first credential Railway lost was only supposed to push images. It was trusted by more systems than it should have been.\n\nSource:\nhttps://blog.railway.com/p/incident-report-october-security-incident",
+      "bodyNote": "This is an operational checklist, not a compliance audit. The 20:19 UTC timestamp is when Railway invalidated all user sessions and tokens. Codex Security is linked as an optional scanning tool, not a required control."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-15-a-cost-per-task",
+      "date": "2026-11-15",
+      "day": "SUN",
+      "slot": "A",
+      "time": "4:00pm IST",
+      "type": "OPINION",
+      "hookId": 1,
+      "hookName": "Contrarian Take",
+      "title": "Token prices are the wrong metric. Cost per completed task is the right one.",
+      "firstLine": "Everyone is comparing token prices. After this week's releases, I think that's the wrong number.",
+      "angle": "Synthesis of the week's pricing: Carbon $2/$10 intro then $4/$20; Hydrogen $1.50/$7.50 flat 1M; Fable $8/$40; Muse Ember $0.10/$0.50; Decisions $0.10 input, zero output. The argument: different token counts, retries, and verification make sticker price misleading. Caveat: vendor benchmarks and task mix.",
+      "anchor": {
+        "title": "Google: Gemini 4 Hydrogen (Nov 12)",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+      },
+      "also": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+        "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+        "https://research.meta.ai/blog/muse-ember"
+      ],
+      "people": [
+        "Google DeepMind",
+        "Anthropic",
+        "Meta",
+        "OpenAI"
+      ],
+      "tag": "no",
+      "stack": [
+        "synthesis: week's model economics",
+        "trend-ride: cost per accepted task",
+        "hot take: instrument the finished task, not the token"
+      ],
+      "body": "Everyone is comparing token prices. After this week's releases, I think that's the wrong number.\n\nLook at what shipped. Gemini 4 Carbon is $2/$10 during the intro period, then $4/$20 after November 30. Gemini 4 Hydrogen is $1.50/$7.50, flat across a 1M-token window. Claude Fable 5.2 is $8/$40, or $16/$80 in fast mode. Meta's Muse Ember is $0.10/$0.50.\n\nThose numbers are not comparable on their own. Carbon uses more tokens than Argon to explore and verify. Fable at High effort scores about the same as Opus 5.5 at Max on FrontierCode 2.0 for roughly half the cost per task. Muse Ember matches Haiku 5.5's best score at about a third of the cost. Hydrogen's Orchestrator reaches near-Carbon success on Terminal-Bench 4.0 while using 24% less quota and finishing 19% faster.\n\nThe metric that matters is cost per accepted task, including retries, verification, and human review. A cheap model that needs three attempts is not cheap. An expensive model that gets it right once may be the bargain.\n\nIf you're building an agent budget this quarter, instrument cost per completed task by task type. Then route accordingly. The model isn't the unit of work. The finished task is.\n\nSources:\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/\nhttps://www.anthropic.com/claude-fable-and-mythos-5-2\nhttps://research.meta.ai/blog/muse-ember",
+      "bodyNote": "Synthesis of vendor pricing and vendor benchmarks. Cost per completed task depends on task mix, retries, verification, and human review; the numbers cited are not a controlled comparison."
+    },
+    {
+      "week": "nov9",
+      "linkedinUrl": null,
+      "metrics": null,
+      "firstComment": null,
+      "status": "drafted",
+      "format": "text",
+      "id": "2026-11-15-b-three-layers",
+      "date": "2026-11-15",
+      "day": "SUN",
+      "slot": "B",
+      "time": "7:00pm IST",
+      "type": "OPINION",
+      "hookId": 7,
+      "hookName": "The Callout",
+      "title": "The agent stack is splitting into three layers",
+      "firstLine": "If you're still buying one model and calling it an agent architecture, stop.",
+      "angle": "Sunday synthesis: control (Control Room, self-hosted Managed Agents), execution (Orchestrator, /swarm, Muse Ember), memory (Anthropic memory/dreaming, Claude Meetings artifacts). The architect's job is to decide where each layer runs, who can stop it, and what it remembers. Caveat: early and vendor-specific.",
+      "anchor": {
+        "title": "Anthropic: Operate Claude Managed Agents inside your security perimeter (Nov 12)",
+        "url": "https://claude.com/resources/articles/self-hosted-claude-managed-agents"
+      },
+      "also": [
+        "https://openai.com/index/control-room/",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+        "https://www.anthropic.com/research/components-of-agent-memory"
+      ],
+      "people": [
+        "OpenAI",
+        "Anthropic",
+        "Google DeepMind",
+        "Meta"
+      ],
+      "tag": "no",
+      "stack": [
+        "synthesis: control, execution, memory",
+        "trend-ride: agent architecture separates",
+        "hot take: name the layers before adding agents"
+      ],
+      "body": "If you're still buying one model and calling it an agent architecture, stop.\n\nThe agent stack is splitting into three layers: control, execution, and memory.\n\nControl is where you decide what the agent can do and how to stop it. OpenAI's Control Room checks every inference request against a job_id and fails closed if the control plane goes down. Anthropic's self-hosted Managed Agents puts the harness, sandbox, credentials, and session history in your VPC. Control is now a deployment choice.\n\nExecution is multi-model by default. Google's Orchestrator switches between Carbon and Hydrogen in one session; /swarm runs planners, workers, and verifiers in parallel. Muse Ember is priced for high-volume subagent calls.\n\nMemory is where experience persists. Anthropic's memory work separates transcripts, notes, wikis, and injected context, with a dreaming loop that corrects notes against transcripts. Claude Meetings writes the artifact during the call, so the meeting itself becomes memory.\n\nThe teams that get value decide three things: where the control plane runs, which model handles each step, and what the agent remembers.\n\nThat's the conversation I'd have before adding another agent.\n\nSources:\nhttps://openai.com/index/control-room/\nhttps://claude.com/resources/articles/self-hosted-claude-managed-agents\nhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/\nhttps://www.anthropic.com/research/components-of-agent-memory",
+      "bodyNote": "Synthesis across vendor announcements. The three-layer framing is the author's, not a vendor taxonomy. Control Room covers research workloads, while self-hosted Managed Agents is in private beta."
     }
   ]
 };
