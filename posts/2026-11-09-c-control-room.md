@@ -14,13 +14,15 @@
 
 OpenAI can stop a model's output in 35 seconds. The part I'd actually read is what happens when the kill switch itself fails.
 
-Control Room tracks every research inference workload across OpenAI's infrastructure. Each job gets a job_id tied to an approved safety case. Before an inference engine fulfills a request, it checks with Control Room. If the job is stopped, the engine refuses. The workload code can keep running; it just can't produce more tokens.
+Control Room tracks every research inference job across OpenAI's infrastructure, and each job gets exactly 1 job_id tied to an approved safety case. 3 systems are involved: the workload, the inference engine, and the Control Room service. A workload can use 1 or more models across 1 or more engines. The page walks through a 13-step example. I'd read it. Before an engine fills a request, it checks with Control Room. If the job is stopped, the engine refuses. The workload can keep running. It just can't produce another token.
 
-The design choice is the lesson. OpenAI put the enforcement in the inference layer, not in the workload code, because workload code changes constantly and is a bad place for a load-bearing safety control. It also runs sweeps to catch rogue engines with Control Room disabled.
+I like where the enforcement sits. OpenAI put it in the inference layer, not in workload code. Workload code changes constantly. The inference layer is a handful of code paths, which makes it a real chokepoint. I'd copy that placement. OpenAI also runs sweeps for rogue engines with Control Room disabled.
 
-And it fails closed. If Control Room goes down, or someone tampers with it, every inference request is denied until it comes back. The 35-second lag comes from an authorization cache. OpenAI says it's working toward zero.
+And it fails closed. 2 failure modes matter: a system error or a bad actor. Either way, every inference request is denied until Control Room comes back. That 35-second window is the gap between the stop order and the last token. It comes from an authorization cache. OpenAI says it's working toward 0.
 
-This is research infrastructure, not the customer API. But the architecture applies to any team running unattended agents: put the stop at the narrowest chokepoint, make it independent of the agent, and decide now what happens when the control plane is unavailable.
+A monitor catches problems in frontier reinforcement learning jobs. The DNS incident was one. The engine runs on GPUs, and when the monitor stops a job, the next request from that job_id is denied.
+
+This is research infrastructure, not the customer API. Fair. But if you're running unattended agents, the shape still applies. Put the stop at the narrowest chokepoint, keep it independent of the agent, and decide now what happens when the control plane is unavailable.
 
 Source:
 https://openai.com/index/control-room/

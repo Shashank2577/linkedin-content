@@ -14,7 +14,7 @@
 
 Here is the exact checklist I'd run after reading Railway's postmortem. Steal it.
 
-The attacker's path is worth mapping onto your own stack. They escaped build isolation, stole a build credential, read build histories, found an OIDC misconfiguration, and used short-lived cloud credentials to reach a machine that could decrypt customer variables. The target was AI provider keys, selected by regex.
+The attacker's path is worth mapping onto your own stack. They escaped build isolation, stole a build credential, read the histories of 353 builds, found an OIDC misconfiguration, and used short-lived cloud credentials to reach a machine that could decrypt customer variables. They also read linked-account tokens for 1,852 users. The blast radius was capped at 1.85% of workspaces, about 100,000, and the stolen keys ran up roughly $740,000 in unauthorized spend. The target was AI provider keys, selected by regex.
 
 Here's what I'd change on Monday.
 
@@ -22,7 +22,7 @@ Inventory every AI key outside your secrets manager: CI, build caches, notebooks
 
 Scope keys per environment and per service. A key that can call every model for every customer is a liability. Use separate keys for production, staging, and experiments, with spend limits.
 
-Make them short-lived where the provider supports it. Rotate the rest on a schedule, and have a tested runbook for invalidating every session and token at once. Railway did that at 20:19 UTC on October 21; it was necessary, but it was also disruptive because it wasn't a routine drill.
+Make them short-lived where the provider supports it. Rotate the rest on a schedule, and have a tested runbook for invalidating every session and token at once. Railway did that at 20:19 UTC on October 21. It was necessary. It was also disruptive because it wasn't a routine drill.
 
 Watch spend, not just errors. The attacker's use looked like normal API traffic. Anomaly detection on token spend would have caught it earlier.
 

@@ -16,9 +16,9 @@ Everyone is comparing token prices. After this week's releases, I think that's t
 
 Look at what shipped. Gemini 4 Carbon is $2/$10 during the intro period, then $4/$20 after November 30. Gemini 4 Hydrogen is $1.50/$7.50, flat across a 1M-token window. Claude Fable 5.2 is $8/$40, or $16/$80 in fast mode. Meta's Muse Ember is $0.10/$0.50.
 
-Those numbers are not comparable on their own. Carbon uses more tokens than Argon to explore and verify. Fable at High effort scores about the same as Opus 5.5 at Max on FrontierCode 2.0 for roughly half the cost per task. Muse Ember matches Haiku 5.5's best score at about a third of the cost. Hydrogen's Orchestrator reaches near-Carbon success on Terminal-Bench 4.0 while using 24% less quota and finishing 19% faster.
+Those numbers aren't comparable on their own. Carbon uses more tokens than Argon to explore and verify, and Fable at High effort scores about the same as Opus 5.5 at Max on FrontierCode 2.0 for roughly half the cost per task. Same task, half the bill. Muse Ember matches Haiku 5.5's best score at about a third of the cost. Hydrogen's Orchestrator reaches near-Carbon success on Terminal-Bench 4.0 while using 24% less quota and finishing 19% faster.
 
-The metric that matters is cost per accepted task, including retries, verification, and human review. A cheap model that needs three attempts is not cheap. An expensive model that gets it right once may be the bargain.
+The metric that matters is cost per accepted task. Not the token price. That includes retries, verification, and human review. A cheap model that needs three attempts isn't cheap. The retries are the cost. An expensive model that gets it right once may be the bargain.
 
 If you're building an agent budget this quarter, instrument cost per completed task by task type. Then route accordingly. The model isn't the unit of work. The finished task is.
 

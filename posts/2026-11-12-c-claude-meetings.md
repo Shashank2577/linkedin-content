@@ -13,11 +13,11 @@
 
 The most useful thing Claude did this week wasn't write code. It joined a meeting.
 
-Claude Meetings is in beta on Team and Enterprise plans, starting with Google Meet. It follows the conversation, answers questions out loud or in chat, and builds docs and whiteboards live while teammates edit them. It writes the notes and action items. After the call, everything lands on a meeting page in claude.ai that people on the invite can revisit and ask questions about.
+Anthropic's Claude Meetings is in beta on Team and Enterprise plans, starting with Google Meet. It follows the conversation, answers questions out loud or in chat, and builds docs and whiteboards live while teammates edit them. It writes the notes. And the action items. After the call, everything lands on 1 meeting page in claude.ai that people on the invite can revisit and ask questions about.
 
-The security defaults are the part I'd read. Claude stays out of calls with external guests by default, and leaves if an outside guest joins partway through. An admin can override that. It saves a transcript, summary, and screen descriptions, not audio. It uses each person's connected tools with that person's permission, and asks the first time. On calls with guests, it posts a notice in chat but doesn't reply there.
+The security defaults are what I'd read first. If you run customer calls, they matter more than the notes. Claude stays out of calls with external guests by default. If an outside guest joins partway through, it leaves. I'd keep that default. An admin can override it. If you're the admin, that's your call. It saves 3 things: a transcript, a summary, and screen descriptions. Not audio. It uses each person's connected tools with that person's permission, and asks the first time. On calls with guests, it posts a notice in chat but doesn't reply there.
 
-Caveats: beta, Google Meet only, and not available to organizations with zero data retention, HIPAA-ready configuration, or customer-managed encryption keys. Notes and transcripts are free during beta; artifacts are free through February 10, 2027.
+The limits are real. It's beta. Google Meet only. And it's not available to organizations with zero data retention, HIPAA-ready configuration, or customer-managed encryption keys. Notes and transcripts are free during beta. Artifacts are free through February 10, 2027.
 
 The interesting shift isn't transcription. It's that the meeting artifact is now generated during the meeting, with the team editing it in real time. The recap is no longer a cleanup task.
 

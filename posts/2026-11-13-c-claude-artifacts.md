@@ -16,13 +16,13 @@ The most important Claude release this week wasn't a model. It was a spreadsheet
 
 Anthropic's Nov 10 release is less about a new model and more about where the work happens. Claude Sheets is a collaborative spreadsheet with formulas and multiple tabs. Claude Whiteboards is a shared canvas that Claude can summarize. Claude Data, formerly Dashboards, connects to Snowflake and Salesforce and can use certified definitions to build dashboards, data stories, or narrated videos. Interactive connectors let partner apps like Adobe and Atlassian open inside Claude, so you and Claude work in the same tool.
 
-The context carries across artifacts. An idea can move from a whiteboard to a spreadsheet to a dashboard without restating the details.
+Context carries across artifacts. An idea can move from a whiteboard to a spreadsheet to a dashboard. No restating the details. I'd test the handoff first.
 
-The operational details matter for enterprises. On Enterprise plans, admins control who can use which connectors and set spend limits. Each cloud session runs in its own isolated VM, with connector credentials kept outside it. Claude works within existing permissions, and admins can limit what a connector can do.
+For enterprises, the operational details are the interesting part. Admins control who can use which connectors and set spend limits. Each cloud session runs in its own isolated VM, with connector credentials kept outside it. Claude works within existing permissions, and admins can limit what a connector can do.
 
-Anthropic's internal examples are the proof: a legal review workflow cut marketing reviews from three days to 24 hours; an FP&A team cut forecast assembly from about 10 hours to under 30 minutes.
+Anthropic's internal examples are the proof. A legal review workflow cut marketing reviews from three days to 24 hours. An FP&A team cut forecast assembly from about 10 hours to under 30 minutes.
 
-Caveat: this is a collaboration surface, not a replacement for your BI stack. But the artifact is becoming the interface.
+I wouldn't call this a BI replacement. It's a collaboration surface. But the artifact is becoming the interface.
 
 Source:
 https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors

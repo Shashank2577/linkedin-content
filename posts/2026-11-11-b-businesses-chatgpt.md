@@ -13,15 +13,17 @@
 
 1.2 billion weekly users. ChatGPT just became a storefront for businesses.
 
-OpenAI launched Businesses in ChatGPT in beta this week. Companies can claim their profile, update details, add product feeds with pricing and availability, and see aggregated insights: mentions, website clicks, discovery topics. If they're eligible, they can build a Business Agent that answers customer questions in a separate, clearly labeled conversation.
+OpenAI launched Businesses in ChatGPT in beta on November 10. Companies can claim their profile in Business Hub, update details, add product feeds with pricing and availability, and see aggregated insights: mentions, website clicks, discovery topics. Eligible firms can build a Business Agent that answers customer questions in a separate, clearly labeled conversation.
 
-The scale is the reason to care: OpenAI says 1.2 billion people use ChatGPT each week. For a small business, that's a discovery surface in the same category as search and maps, except the answer is generated. For a product team, it's a new place where your catalog and your claims get represented by a model.
+The scale is the reason to care. OpenAI says 1.2 billion people use ChatGPT each week. For a small business, that's a discovery surface in the same category as search and maps, except the answer is generated. For a product team, it's a new place where your catalog and your claims get represented by a model.
 
-OpenAI is drawing the privacy line carefully. Businesses don't get users' conversations or Business Agent chats. Insights are aggregated and only appear when enough interactions meet a threshold. Business Agents can be sponsored, and sponsored placements are labeled separately from ChatGPT's answers.
+Shopify merchants can connect their store from Business Hub or the Shopify admin. Eligible products are already in ChatGPT through Shopify Catalog. That's a real distribution channel, not a demo.
 
-The caveats are real: beta, US-only for Business Agents, limited to eligible e-commerce and online service categories.
+OpenAI is drawing the privacy line carefully. Businesses don't get users' conversations or Business Agent chats. Insights are aggregated and only appear when enough interactions meet a threshold. Business Agents can be sponsored, and sponsored placements are labeled separately from ChatGPT's answers. Some can serve as the destination for ChatGPT Ads.
 
-But the direction is clear. ChatGPT is not just answering questions about businesses anymore. It's giving them a storefront, an agent, and an analytics dashboard.
+The limits are real. It's beta. Business Agents are US-only, and only eligible e-commerce and online service categories can use them.
+
+But the direction is clear. ChatGPT isn't just answering questions about businesses anymore. It's giving them a storefront, an agent, and an analytics dashboard.
 
 Source:
 https://openai.com/index/introducing-businesses-chatgpt

@@ -14,17 +14,17 @@
 
 If you're still buying one model and calling it an agent architecture, stop.
 
-The agent stack is splitting into three layers: control, execution, and memory.
+The agent stack is splitting into three layers. Control, execution, memory.
 
 Control is where you decide what the agent can do and how to stop it. OpenAI's Control Room checks every inference request against a job_id and fails closed if the control plane goes down. Anthropic's self-hosted Managed Agents puts the harness, sandbox, credentials, and session history in your VPC. Control is now a deployment choice.
 
-Execution is multi-model by default. Google's Orchestrator switches between Carbon and Hydrogen in one session; /swarm runs planners, workers, and verifiers in parallel. Muse Ember is priced for high-volume subagent calls.
+Execution is multi-model by default. Google's Orchestrator switches between Carbon and Hydrogen in one session. /swarm runs planners, workers, and verifiers in parallel. Muse Ember is priced for high-volume subagent calls.
 
 Memory is where experience persists. Anthropic's memory work separates transcripts, notes, wikis, and injected context, with a dreaming loop that corrects notes against transcripts. Claude Meetings writes the artifact during the call, so the meeting itself becomes memory.
 
 The teams that get value decide three things: where the control plane runs, which model handles each step, and what the agent remembers.
 
-That's the conversation I'd have before adding another agent.
+I'd have that conversation before adding another agent.
 
 Sources:
 https://openai.com/index/control-room/
